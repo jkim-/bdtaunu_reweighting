@@ -7,6 +7,7 @@
 #include <pgstring_utils.h>
 
 #include "McDecayGraph.h"
+#include "McDecayGraphAnalyzer.h"
 #include "ParticleGraphWriter.h"
 
 namespace pu = pgstring_utils;
@@ -51,12 +52,16 @@ int main() {
   McDecayGraph g = graph_factory.create_graph(mc_n_vertices, mc_n_edges, 
       mc_from_vertices, mc_to_vertices, 
       mc_lund_id, mcmass, mcp3, mccosth, mcphi);
+
+  McDecayGraphAnalyzer analyzer;
+  analyzer.analyze(g);
   
 
-  auto index_pm = get_idx_pm(g);
+  /*auto index_pm = get_idx_pm(g);
   auto lund_pm = get_lund_pm(g);
   print_graph(std::cout, g, index_pm, 
               make_lund_id_writer(lund_pm, "pdt.dat"));
+              */
 
   /*auto mass_pm = get_mass_pm(g);
   print_graph(std::cout, g, index_pm, 
