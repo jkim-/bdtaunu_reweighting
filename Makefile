@@ -1,5 +1,5 @@
-BINARIES = test4
-OBJECTS = XSLKin.o ff_reweight_defs.o ff_reweight_utils.o McGraphBuilder.o
+BINARIES = test5
+OBJECTS = XSLKin.o ff_reweight_defs.o ff_reweight_utils.o McDecayGraph.o #McGraphBuilder.o
 
 FF_REWEIGHT_ROOT = /Users/dchao/mctest/ff_reweight
 UTILS_ROOT = $(FF_REWEIGHT_ROOT)/utils
