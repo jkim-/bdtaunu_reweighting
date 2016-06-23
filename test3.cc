@@ -166,7 +166,7 @@ void construct_particle_decay_graph(
   populate_attributes(g, lund_id, mcmass, mcp3, mccosth, mcphi);
 
   // remove irrelevant particles
-  rip_irrelevant_particles(g);
+  //rip_irrelevant_particles(g);
 
 }
 
@@ -214,12 +214,12 @@ int main() {
       mc_lund_id, mcmass, mcp3, mccosth, mcphi);
 
   IntPropertyMap index_pm = get(&VertexProperties::idx_, g);
-  /*IntPropertyMap lund_pm = get(&VertexProperties::lund_id_, g);
+  IntPropertyMap lund_pm = get(&VertexProperties::lund_id_, g);
   print_graph(std::cout, g, index_pm, 
-              make_lund_id_writer(lund_pm, "pdt.dat"));*/
-  DoublePropertyMap mass_pm = get(&VertexProperties::mass_, g);
+              make_lund_id_writer(lund_pm, "pdt.dat"));
+  /*DoublePropertyMap mass_pm = get(&VertexProperties::mass_, g);
   print_graph(std::cout, g, index_pm, 
-              make_basic_graph_writer(mass_pm));
+              make_basic_graph_writer(mass_pm));*/
 
 
   // clean up
