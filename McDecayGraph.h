@@ -10,6 +10,8 @@ struct McDecayGraphVtxProp {
   int idx_;
   int lund_id_;
   double mass_;
+  double energycm_;
+  double energy_;
   double p3mag_;
   double costh_;
   double phi_;
@@ -35,6 +37,14 @@ inline McDecayGraphIntPM get_lund_pm(McDecayGraph &g) {
 
 inline McDecayGraphDoublePM get_mass_pm(McDecayGraph &g) { 
   return get(&McDecayGraphVtxProp::mass_, g); 
+}
+
+inline McDecayGraphDoublePM get_energycm_pm(McDecayGraph &g) { 
+  return get(&McDecayGraphVtxProp::energycm_, g); 
+}
+
+inline McDecayGraphDoublePM get_energy_pm(McDecayGraph &g) { 
+  return get(&McDecayGraphVtxProp::energy_, g); 
 }
 
 inline McDecayGraphDoublePM get_p3mag_pm(McDecayGraph &g) { 
@@ -73,6 +83,8 @@ class McDecayGraphFactory {
       const std::vector<int> &to_vertices,
       const std::vector<int> &lund_id,
       const std::vector<float> &mcmass,
+      const std::vector<float> &mcenergycm,
+      const std::vector<float> &mcenergy,
       const std::vector<float> &mcp3,
       const std::vector<float> &mccosth,
       const std::vector<float> &mcphi);
@@ -87,6 +99,8 @@ class McDecayGraphFactory {
     void populate_attributes(Graph &g, 
         const std::vector<int> &lund_id,
         const std::vector<float> &mcmass,
+        const std::vector<float> &mcenergycm,
+        const std::vector<float> &mcenergy,
         const std::vector<float> &mcp3,
         const std::vector<float> &mccosth,
         const std::vector<float> &mcphi);

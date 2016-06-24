@@ -9,6 +9,18 @@
 #include "McDecayGraph.h"
 #include "BToDlnuMode.h"
 
+struct McDecayGraphData {
+
+  public:
+    using Vertex = McDecayGraphTraits::vertex_descriptor;
+
+  public:
+    std::unordered_map<Vertex, std::vector<Vertex>> b_mesons_;
+    std::unordered_map<Vertex, std::vector<Vertex>> dstar_mesons_;
+    
+    void clear();
+};
+
 class McDecayGraphAnalyzer {
 
   private:
@@ -29,24 +41,21 @@ class McDecayGraphAnalyzer {
 
     void analyze(Graph g);
 
+    std::vector<BToDlnuMode> get_bdlnu() { return bdlnu_; }
+
   private:
     void clear_cache();
+    void extract_bdlnu(const McDecayGraphData &data);
 
   private:
     std::vector<BToDlnuMode> bdlnu_;
+    IntPropertyMap lund_pm_;
+    DoublePropertyMap energycm_pm_;
+    DoublePropertyMap energy_pm_;
+    DoublePropertyMap p3mag_pm_;
+    DoublePropertyMap costh_pm_;
+    DoublePropertyMap phi_pm_;
 
-};
-
-struct McDecayGraphData {
-
-  public:
-    using Vertex = McDecayGraphTraits::vertex_descriptor;
-
-  public:
-    std::unordered_map<Vertex, std::vector<Vertex>> b_mesons_;
-    std::unordered_map<Vertex, std::vector<Vertex>> dstar_mesons_;
-    
-    void clear();
 };
 
 class McGraphBfsCrawler : public boost::default_bfs_visitor {

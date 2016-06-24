@@ -9,6 +9,8 @@
 #include "McDecayGraph.h"
 #include "McDecayGraphAnalyzer.h"
 #include "ParticleGraphWriter.h"
+#include "BToDlnuMode.h"
+#include "XSLKin.h"
 
 namespace pu = pgstring_utils;
 
@@ -25,48 +27,50 @@ int main() {
         "eid", 
         "mc_n_vertices", "mc_n_edges",
         "mc_from_vertices", "mc_to_vertices", 
-        "mc_lund_id", "mcmass",
-        "mcp3", "mccosth", "mcphi", "mcenergy"
+        "mc_lund_id", "mcmass", "mcenergycm",
+        "mcenergy", "mcp3", "mccosth", "mcphi" 
       }, cursor_fetch_size);
 
   int eid, mc_n_vertices, mc_n_edges;
   std::vector<int> mc_from_vertices, mc_to_vertices, mc_lund_id;
-  std::vector<float> mcmass, mcp3, mccosth, mcphi, mcenergy; 
+  std::vector<float> mcmass, mcenergycm, mcenergy, mcp3, mccosth, mcphi; 
+
+  // open output file
+  std::ofstream fout("test.csv");
 
   // serialize
-  psql.next();
+  while (psql.next()) {
 
-  pu::string2type(psql.get("eid"), eid);
-  pu::string2type(psql.get("mc_n_vertices"), mc_n_vertices);
-  pu::string2type(psql.get("mc_n_edges"), mc_n_edges);
-  pu::string2type(psql.get("mc_from_vertices"), mc_from_vertices);
-  pu::string2type(psql.get("mc_to_vertices"), mc_to_vertices);
-  pu::string2type(psql.get("mc_lund_id"), mc_lund_id);
-  pu::string2type(psql.get("mcmass"), mcmass);
-  pu::string2type(psql.get("mcp3"), mcp3);
-  pu::string2type(psql.get("mccosth"), mccosth);
-  pu::string2type(psql.get("mcphi"), mcphi);
-  pu::string2type(psql.get("mcenergy"), mcenergy);
+    pu::string2type(psql.get("eid"), eid);
+    pu::string2type(psql.get("mc_n_vertices"), mc_n_vertices);
+    pu::string2type(psql.get("mc_n_edges"), mc_n_edges);
+    pu::string2type(psql.get("mc_from_vertices"), mc_from_vertices);
+    pu::string2type(psql.get("mc_to_vertices"), mc_to_vertices);
+    pu::string2type(psql.get("mc_lund_id"), mc_lund_id);
+    pu::string2type(psql.get("mcmass"), mcmass);
+    pu::string2type(psql.get("mcenergycm"), mcenergycm);
+    pu::string2type(psql.get("mcenergy"), mcenergy);
+    pu::string2type(psql.get("mcp3"), mcp3);
+    pu::string2type(psql.get("mccosth"), mccosth);
+    pu::string2type(psql.get("mcphi"), mcphi);
 
-  McDecayGraphFactory graph_factory;
-  McDecayGraph g = graph_factory.create_graph(mc_n_vertices, mc_n_edges, 
-      mc_from_vertices, mc_to_vertices, 
-      mc_lund_id, mcmass, mcp3, mccosth, mcphi);
+    McDecayGraphFactory graph_factory;
+    McDecayGraph g = graph_factory.create_graph(mc_n_vertices, mc_n_edges, 
+        mc_from_vertices, mc_to_vertices, 
+        mc_lund_id, mcmass, mcenergycm, mcenergy, mcp3, mccosth, mcphi);
 
-  McDecayGraphAnalyzer analyzer;
-  analyzer.analyze(g);
+    McDecayGraphAnalyzer analyzer;
+    analyzer.analyze(g);
+
+    std::vector<BToDlnuMode> bdlnu = analyzer.get_bdlnu();
+    for (auto it = bdlnu.begin(); it != bdlnu.end(); ++it) {
+      XSLKin kin(it->get_BLab(), it->get_LepLab(), it->get_XLab());
+      fout << kin.q2() << " ";
+      fout << (it->get_ecmLep()) << std::endl;
+    }
+
+  }
   
-
-  /*auto index_pm = get_idx_pm(g);
-  auto lund_pm = get_lund_pm(g);
-  print_graph(std::cout, g, index_pm, 
-              make_lund_id_writer(lund_pm, "pdt.dat"));
-              */
-
-  /*auto mass_pm = get_mass_pm(g);
-  print_graph(std::cout, g, index_pm, 
-              make_basic_graph_writer(mass_pm));*/
-
 
   // clean up
   psql.close_cursor();
