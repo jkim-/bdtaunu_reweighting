@@ -5,13 +5,13 @@
 #include <boost/property_map/property_map.hpp>
 
 #include "ff_reweight_defs.h"
-#include "McDecayGraphAnalyzer.h"
+#include "McDecayGraphCrawler.h"
 
-void McDecayGraphAnalyzer::clear_cache() {
+void McDecayGraphCrawler::clear_cache() {
   bdlnu_.clear();
 }
 
-void McDecayGraphAnalyzer::analyze(Graph g) {
+void McDecayGraphCrawler::analyze(Graph g) {
 
   // reset and update cache
   clear_cache();
@@ -36,21 +36,21 @@ void McDecayGraphAnalyzer::analyze(Graph g) {
   }
 
   // create visitor
-  McDecayGraphSummary crawler_result;
-  McGraphBfsCrawler vis(crawler_result, lund_pm_);
+  McDecayGraphSummary summary;
+  McGraphBfsVisitor vis(summary, lund_pm_);
 
   // crawl decay graph
   boost::breadth_first_search(g, s, visitor(vis).color_map(color_pm));
 
   // extract bdlnu
-  extract_bdlnu(crawler_result);
+  extract_bdlnu(summary);
 
 }
 
-void McDecayGraphAnalyzer::extract_bdlnu(const McDecayGraphSummary &crawler_data) {
+void McDecayGraphCrawler::extract_bdlnu(const McDecayGraphSummary &summary) {
 
-  for (auto it = crawler_data.b_modes().begin();
-       it != crawler_data.b_modes().end(); ++it) {
+  for (auto it = summary.b_modes().begin();
+       it != summary.b_modes().end(); ++it) {
 
     if (it->second.size() != 3) continue;
 
@@ -81,22 +81,22 @@ void McDecayGraphAnalyzer::extract_bdlnu(const McDecayGraphSummary &crawler_data
   }
 }
 
-McGraphBfsCrawler::McGraphBfsCrawler(
+McGraphBfsVisitor::McGraphBfsVisitor(
     McDecayGraphSummary &result,
     const McDecayGraphIntPM &lund_pm) 
-  : crawled_result_(result), lund_pm_(lund_pm) {
-  crawled_result_.clear();
+  : summary_(result), lund_pm_(lund_pm) {
+  summary_.clear();
 }
 
-void McGraphBfsCrawler::tree_edge(Edge e, const Graph &g) {
+void McGraphBfsVisitor::tree_edge(Edge e, const Graph &g) {
 
   Vertex u = source(e, g);
 
   if (is_bmeson(lund_pm_[u])) {
-    (crawled_result_.b_modes())[u].push_back(target(e, g));
+    (summary_.b_modes())[u].push_back(target(e, g));
     
   } else if (is_dstar(lund_pm_[u])) {
-    (crawled_result_.dstar_modes())[u].push_back(target(e, g));
+    (summary_.dstar_modes())[u].push_back(target(e, g));
   } 
 
 }

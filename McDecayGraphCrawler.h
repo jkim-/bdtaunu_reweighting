@@ -11,7 +11,7 @@
 #include "McDecayGraphSummary.h"
 #include "BToDlnuMode.h"
 
-class McDecayGraphAnalyzer {
+class McDecayGraphCrawler {
 
   private:
 
@@ -27,8 +27,8 @@ class McDecayGraphAnalyzer {
 
   public: 
 
-    McDecayGraphAnalyzer() {};
-    ~McDecayGraphAnalyzer() {};
+    McDecayGraphCrawler() {};
+    ~McDecayGraphCrawler() {};
 
     void analyze(Graph g);
 
@@ -46,7 +46,7 @@ class McDecayGraphAnalyzer {
 
 };
 
-class McGraphBfsCrawler : public boost::default_bfs_visitor {
+class McGraphBfsVisitor : public boost::default_bfs_visitor {
 
   public:
     using Graph = McDecayGraph;
@@ -55,13 +55,13 @@ class McGraphBfsCrawler : public boost::default_bfs_visitor {
 
   public:
 
-    McGraphBfsCrawler(McDecayGraphSummary &result,
+    McGraphBfsVisitor(McDecayGraphSummary &result,
                       const McDecayGraphIntPM &lund_pm); 
 
     void tree_edge(Edge e, const Graph &g);
 
   private:
-    McDecayGraphSummary &crawled_result_;
+    McDecayGraphSummary &summary_;
     McDecayGraphIntPM lund_pm_;
 
 };

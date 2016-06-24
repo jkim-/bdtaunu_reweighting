@@ -11,7 +11,7 @@
 #include "ff_reweight_utils.h"
 
 #include "McDecayGraph.h"
-#include "McDecayGraphAnalyzer.h"
+#include "McDecayGraphCrawler.h"
 #include "ParticleGraphWriter.h"
 #include "BToDlnuMode.h"
 #include "XSLKin.h"
@@ -75,10 +75,10 @@ int main() {
         mc_from_vertices, mc_to_vertices, 
         mc_lund_id, mcmass, lorentz, lorentz_cm);
 
-    McDecayGraphAnalyzer analyzer;
-    analyzer.analyze(g);
+    McDecayGraphCrawler crawler;
+    crawler.analyze(g);
 
-    std::vector<BToDlnuMode> bdlnu = analyzer.get_bdlnu();
+    std::vector<BToDlnuMode> bdlnu = crawler.get_bdlnu();
     for (auto it = bdlnu.begin(); it != bdlnu.end(); ++it) {
       XSLKin kin(it->get_BLab(), it->get_LepLab(), it->get_XLab());
       fout << kin.q2() << " ";
