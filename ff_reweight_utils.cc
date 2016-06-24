@@ -1,3 +1,6 @@
+#include <vector>
+#include <stdexcept>
+
 #include "ff_reweight_utils.h"
 
 HepLorentzVector make_lorentz_vector(

@@ -1,4 +1,4 @@
-BINARIES = test6
+BINARIES = test7
 OBJECTS = XSLKin.o ff_reweight_defs.o ff_reweight_utils.o McDecayGraph.o \
 					McDecayGraphAnalyzer.o DecayMode.o BToDlnuMode.o
 
