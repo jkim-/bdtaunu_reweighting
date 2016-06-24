@@ -3,7 +3,11 @@
 //   Creation: David Cote, Universite de Montreal, 12/11/03
 //   see comments in the XSLKin.hh file
 
+#include "ff_reweight_defs.h"
 #include "XSLKin.h"
+
+using HepLorentzVector = CLHEP::HepLorentzVector;
+using Hep3Vector = CLHEP::Hep3Vector;
 
 
 XSLKin::XSLKin( XSLKin* Kin ) :

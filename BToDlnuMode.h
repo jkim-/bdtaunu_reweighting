@@ -1,7 +1,8 @@
 #ifndef __BTODLNUMODE_H__ 
 #define __BTODLNUMODE_H__ 
 
-#include "ff_reweight_defs.h"
+#include <CLHEP/Vector/LorentzVector.h>
+
 #include "DecayMode.h"
 
 class BToDlnuMode : public DecayMode {
@@ -11,25 +12,30 @@ class BToDlnuMode : public DecayMode {
     BToDlnuMode();
 
     BToDlnuMode(
-        double e_B, double p3mag_B, double costh_B, double phi_B, 
-        double e_X, double p3mag_X, double costh_X, double phi_X, 
-        double e_Lep, double p3mag_Lep, double costh_Lep, double phi_Lep,
-        double ecm_Lep
+        CLHEP::HepLorentzVector BLab, 
+        CLHEP::HepLorentzVector XLab, 
+        CLHEP::HepLorentzVector LepLab, 
+        CLHEP::HepLorentzVector BCM, 
+        CLHEP::HepLorentzVector XCM, 
+        CLHEP::HepLorentzVector LepCM 
     );
 
-    HepLorentzVector get_BLab() { return BLab_; }
-    HepLorentzVector get_XLab() { return XLab_; }
-    HepLorentzVector get_LepLab() { return LepLab_; }
-    double get_ecmLep() { return ecmLep_; }
+    CLHEP::HepLorentzVector get_BLab() { return BLab_; }
+    CLHEP::HepLorentzVector get_XLab() { return XLab_; }
+    CLHEP::HepLorentzVector get_LepLab() { return LepLab_; }
+    CLHEP::HepLorentzVector get_BCM() { return BCM_; }
+    CLHEP::HepLorentzVector get_XCM() { return XCM_; }
+    CLHEP::HepLorentzVector get_LepCM() { return LepCM_; }
 
     virtual ~BToDlnuMode() {};
 
   private:
-    HepLorentzVector BLab_;
-    HepLorentzVector XLab_;
-    HepLorentzVector LepLab_;
-
-    double ecmLep_;
+    CLHEP::HepLorentzVector BLab_;
+    CLHEP::HepLorentzVector XLab_;
+    CLHEP::HepLorentzVector LepLab_;
+    CLHEP::HepLorentzVector BCM_;
+    CLHEP::HepLorentzVector XCM_;
+    CLHEP::HepLorentzVector LepCM_;
 };
 
 #endif

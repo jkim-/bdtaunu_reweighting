@@ -3,10 +3,13 @@
 #include <fstream>
 #include <string>
 
+#include <CLHEP/Vector/LorentzVector.h>
+
 #include <PsqlReader.h>
 #include <pgstring_utils.h>
 
 #include "ff_reweight_utils.h"
+
 #include "McDecayGraph.h"
 #include "McDecayGraphAnalyzer.h"
 #include "ParticleGraphWriter.h"
@@ -61,17 +64,16 @@ int main() {
     pu::string2type(psql.get("mccosthcm"), mccosthcm);
     pu::string2type(psql.get("mcphicm"), mcphicm);
 
-    std::vector<HepLorentzVector> lorentz_vectors = 
+    std::vector<CLHEP::HepLorentzVector> lorentz = 
       make_lorentz_vector(mcenergy, mcp3, mccosth, mcphi);
-    std::vector<HepLorentzVector> lorentz_vectors_cm = 
+    std::vector<CLHEP::HepLorentzVector> lorentz_cm = 
       make_lorentz_vector(mcenergycm, mcp3cm, mccosthcm, mcphicm);
 
-    std::cout << lorentz_vectors_cm[2].m() << " ";
-
-    /*McDecayGraphFactory graph_factory;
-    McDecayGraph g = graph_factory.create_graph(mc_n_vertices, mc_n_edges, 
+    McDecayGraphFactory graph_factory;
+    McDecayGraph g = graph_factory.create_graph(
+        mc_n_vertices, mc_n_edges, 
         mc_from_vertices, mc_to_vertices, 
-        mc_lund_id, mcmass, mcenergycm, mcenergy, mcp3, mccosth, mcphi);
+        mc_lund_id, mcmass, lorentz, lorentz_cm);
 
     McDecayGraphAnalyzer analyzer;
     analyzer.analyze(g);
@@ -80,8 +82,8 @@ int main() {
     for (auto it = bdlnu.begin(); it != bdlnu.end(); ++it) {
       XSLKin kin(it->get_BLab(), it->get_LepLab(), it->get_XLab());
       fout << kin.q2() << " ";
-      fout << (it->get_ecmLep()) << std::endl;
-    }*/
+      fout << (it->get_LepCM()).e() << std::endl;
+    }
 
   }
   

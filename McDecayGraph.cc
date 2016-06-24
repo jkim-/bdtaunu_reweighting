@@ -6,18 +6,14 @@ McDecayGraphFactory::create_graph(int n_vertices, int n_edges,
   const std::vector<int> &to_vertices,
   const std::vector<int> &lund_id,
   const std::vector<float> &mcmass,
-  const std::vector<float> &mcenergycm,
-  const std::vector<float> &mcenergy,
-  const std::vector<float> &mcp3,
-  const std::vector<float> &mccosth,
-  const std::vector<float> &mcphi) {
+  const std::vector<CLHEP::HepLorentzVector> &lorentz,
+  const std::vector<CLHEP::HepLorentzVector> &lorentz_cm) {
 
   Graph g;
 
   construct_graph(g, n_vertices, n_edges, from_vertices, to_vertices);
 
-  populate_attributes(g, lund_id, 
-      mcmass, mcenergycm, mcenergy, mcp3, mccosth, mcphi);
+  populate_attributes(g, lund_id, mcmass, lorentz, lorentz_cm);
 
   rip_irrelevant_particles(g);
 
@@ -55,30 +51,21 @@ void McDecayGraphFactory::construct_graph(
 void McDecayGraphFactory::populate_attributes(Graph &g, 
     const std::vector<int> &lund_id,
     const std::vector<float> &mcmass,
-    const std::vector<float> &mcenergycm,
-    const std::vector<float> &mcenergy,
-    const std::vector<float> &mcp3,
-    const std::vector<float> &mccosth,
-    const std::vector<float> &mcphi) {
+    const std::vector<CLHEP::HepLorentzVector> &lorentz,
+    const std::vector<CLHEP::HepLorentzVector> &lorentz_cm) {
 
   assert(lund_id.size() == num_vertices(g));
   assert(mcmass.size() == num_vertices(g));
-  assert(mcenergycm.size() == num_vertices(g));
-  assert(mcenergy.size() == num_vertices(g));
-  assert(mcp3.size() == num_vertices(g));
-  assert(mccosth.size() == num_vertices(g));
-  assert(mcphi.size() == num_vertices(g));
+  assert(lorentz.size() == num_vertices(g));
+  assert(lorentz_cm.size() == num_vertices(g));
 
   // populate attributes
   VertexIter vi, vi_end;
   for (std::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi) {
     g[*vi].lund_id_ = lund_id[g[*vi].idx_];
     g[*vi].mass_ = mcmass[g[*vi].idx_];
-    g[*vi].energycm_ = mcenergycm[g[*vi].idx_];
-    g[*vi].energy_ = mcenergy[g[*vi].idx_];
-    g[*vi].p3mag_ = mcp3[g[*vi].idx_];
-    g[*vi].costh_ = mccosth[g[*vi].idx_];
-    g[*vi].phi_ = mcphi[g[*vi].idx_];
+    g[*vi].lorentz_ = lorentz[g[*vi].idx_];
+    g[*vi].lorentz_cm_ = lorentz_cm[g[*vi].idx_];
   }
 }
 

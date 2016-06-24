@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include <boost/graph/breadth_first_search.hpp>
+#include <CLHEP/Vector/LorentzVector.h>
 
 #include "McDecayGraph.h"
 #include "BToDlnuMode.h"
@@ -33,6 +34,7 @@ class McDecayGraphAnalyzer {
     using OutEdgeIter = McDecayGraphTraits::out_edge_iterator;
     using IntPropertyMap = McDecayGraphIntPM;
     using DoublePropertyMap = McDecayGraphDoublePM;
+    using LorentzPropertyMap = McDecayGraphLorentzPM;
 
   public: 
 
@@ -50,11 +52,8 @@ class McDecayGraphAnalyzer {
   private:
     std::vector<BToDlnuMode> bdlnu_;
     IntPropertyMap lund_pm_;
-    DoublePropertyMap energycm_pm_;
-    DoublePropertyMap energy_pm_;
-    DoublePropertyMap p3mag_pm_;
-    DoublePropertyMap costh_pm_;
-    DoublePropertyMap phi_pm_;
+    LorentzPropertyMap lorentz_pm_;
+    LorentzPropertyMap lorentz_cm_pm_;
 
 };
 

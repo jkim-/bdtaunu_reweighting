@@ -6,15 +6,14 @@
 
 #include <boost/graph/adjacency_list.hpp>
 
+#include <CLHEP/Vector/LorentzVector.h>
+
 struct McDecayGraphVtxProp {
   int idx_;
   int lund_id_;
   double mass_;
-  double energycm_;
-  double energy_;
-  double p3mag_;
-  double costh_;
-  double phi_;
+  CLHEP::HepLorentzVector lorentz_;
+  CLHEP::HepLorentzVector lorentz_cm_;
 };
 
 using McDecayGraph = boost::adjacency_list<
@@ -26,6 +25,9 @@ using McDecayGraphIntPM =
   typename boost::property_map<McDecayGraph, int McDecayGraphVtxProp::*>::type;
 using McDecayGraphDoublePM = 
   typename boost::property_map<McDecayGraph, double McDecayGraphVtxProp::*>::type;
+using McDecayGraphLorentzPM = 
+  typename boost::property_map<
+    McDecayGraph, CLHEP::HepLorentzVector McDecayGraphVtxProp::*>::type;
 
 inline McDecayGraphIntPM get_idx_pm(McDecayGraph &g) { 
   return get(&McDecayGraphVtxProp::idx_, g); 
@@ -39,24 +41,12 @@ inline McDecayGraphDoublePM get_mass_pm(McDecayGraph &g) {
   return get(&McDecayGraphVtxProp::mass_, g); 
 }
 
-inline McDecayGraphDoublePM get_energycm_pm(McDecayGraph &g) { 
-  return get(&McDecayGraphVtxProp::energycm_, g); 
+inline McDecayGraphLorentzPM get_lorentz_pm(McDecayGraph &g) { 
+  return get(&McDecayGraphVtxProp::lorentz_, g); 
 }
 
-inline McDecayGraphDoublePM get_energy_pm(McDecayGraph &g) { 
-  return get(&McDecayGraphVtxProp::energy_, g); 
-}
-
-inline McDecayGraphDoublePM get_p3mag_pm(McDecayGraph &g) { 
-  return get(&McDecayGraphVtxProp::p3mag_, g); 
-}
-
-inline McDecayGraphDoublePM get_costh_pm(McDecayGraph &g) { 
-  return get(&McDecayGraphVtxProp::costh_, g); 
-}
-
-inline McDecayGraphDoublePM get_phi_pm(McDecayGraph &g) { 
-  return get(&McDecayGraphVtxProp::phi_, g); 
+inline McDecayGraphLorentzPM get_lorentz_cm_pm(McDecayGraph &g) { 
+  return get(&McDecayGraphVtxProp::lorentz_cm_, g); 
 }
 
 
@@ -72,6 +62,7 @@ class McDecayGraphFactory {
     using OutEdgeIter = McDecayGraphTraits::out_edge_iterator;
     using IntPropertyMap = McDecayGraphIntPM;
     using DoublePropertyMap = McDecayGraphDoublePM;
+    using LorentzPropertyMap = McDecayGraphLorentzPM;
 
   public: 
 
@@ -83,11 +74,8 @@ class McDecayGraphFactory {
       const std::vector<int> &to_vertices,
       const std::vector<int> &lund_id,
       const std::vector<float> &mcmass,
-      const std::vector<float> &mcenergycm,
-      const std::vector<float> &mcenergy,
-      const std::vector<float> &mcp3,
-      const std::vector<float> &mccosth,
-      const std::vector<float> &mcphi);
+      const std::vector<CLHEP::HepLorentzVector> &lorentz,
+      const std::vector<CLHEP::HepLorentzVector> &lorentz_cm);
 
 
   private:
@@ -99,11 +87,8 @@ class McDecayGraphFactory {
     void populate_attributes(Graph &g, 
         const std::vector<int> &lund_id,
         const std::vector<float> &mcmass,
-        const std::vector<float> &mcenergycm,
-        const std::vector<float> &mcenergy,
-        const std::vector<float> &mcp3,
-        const std::vector<float> &mccosth,
-        const std::vector<float> &mcphi);
+        const std::vector<CLHEP::HepLorentzVector> &lorentz,
+        const std::vector<CLHEP::HepLorentzVector> &lorentz_cm);
 
     void rip_irrelevant_particles(Graph &g);
 

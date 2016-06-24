@@ -1,7 +1,7 @@
 #include "ff_reweight_utils.h"
 
 template <typename T>
-std::vector<HepLorentzVector> make_lorentz_vector(
+std::vector<CLHEP::HepLorentzVector> make_lorentz_vector(
     const std::vector<T> &energy, const std::vector<T> &p3mag, 
     const std::vector<T> &costh, const std::vector<T> &phi) {
 
@@ -14,7 +14,7 @@ std::vector<HepLorentzVector> make_lorentz_vector(
         "vector arguments must have the same sizes. ");
   }
 
-  std::vector<HepLorentzVector> lorentz_vectors; 
+  std::vector<CLHEP::HepLorentzVector> lorentz_vectors; 
   lorentz_vectors.reserve(n);
   for (size_t i = 0; i < n; ++i) {
     lorentz_vectors.push_back(

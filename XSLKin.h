@@ -23,17 +23,14 @@
 
 #include <CLHEP/Vector/LorentzVector.h>
 
-#include "ff_reweight_defs.h"
-
-
 class XSLKin {
 
   public:
 
     // constructors
     XSLKin( XSLKin* Kin );
-    XSLKin(HepLorentzVector BLab, HepLorentzVector LepLab, HepLorentzVector XuLab);
-    XSLKin(HepLorentzVector BLab, HepLorentzVector LepLab, HepLorentzVector XuLab, HepLorentzVector XuDaughterLab);
+    XSLKin(CLHEP::HepLorentzVector BLab, CLHEP::HepLorentzVector LepLab, CLHEP::HepLorentzVector XuLab);
+    XSLKin(CLHEP::HepLorentzVector BLab, CLHEP::HepLorentzVector LepLab, CLHEP::HepLorentzVector XuLab, CLHEP::HepLorentzVector XuDaughterLab);
 
     // copy-control
     ~XSLKin(){};
@@ -50,10 +47,10 @@ class XSLKin {
 
     //other... (mainly useful for copy constructors):
     bool isVector(){ return _isVector; }
-    HepLorentzVector XuLab(){ return _XuLab; }
-    HepLorentzVector XuDLab(){ return _XuDaugLab; }
-    HepLorentzVector LepLab(){ return _LepLab; }
-    HepLorentzVector BLab(){ return _BLab; };
+    CLHEP::HepLorentzVector XuLab(){ return _XuLab; }
+    CLHEP::HepLorentzVector XuDLab(){ return _XuDaugLab; }
+    CLHEP::HepLorentzVector LepLab(){ return _LepLab; }
+    CLHEP::HepLorentzVector BLab(){ return _BLab; };
 
   private:
     void Init();
@@ -69,10 +66,10 @@ class XSLKin {
     double _theta_v;
 
     //From the constructor:
-    HepLorentzVector _BLab;
-    HepLorentzVector _LepLab;
-    HepLorentzVector _XuLab;
-    HepLorentzVector _XuDaugLab;
+    CLHEP::HepLorentzVector _BLab;
+    CLHEP::HepLorentzVector _LepLab;
+    CLHEP::HepLorentzVector _XuLab;
+    CLHEP::HepLorentzVector _XuDaugLab;
 
     bool _isVector;
     
