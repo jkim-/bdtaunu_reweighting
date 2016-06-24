@@ -7,11 +7,6 @@
 #include "ff_reweight_defs.h"
 #include "McDecayGraphAnalyzer.h"
 
-void McDecayGraphData::clear() {
-  b_mesons_.clear();
-  dstar_mesons_.clear();
-}
-
 void McDecayGraphAnalyzer::clear_cache() {
   bdlnu_.clear();
 }
@@ -41,7 +36,7 @@ void McDecayGraphAnalyzer::analyze(Graph g) {
   }
 
   // create visitor
-  McDecayGraphData crawler_result;
+  McDecayGraphSummary crawler_result;
   McGraphBfsCrawler vis(crawler_result, lund_pm_);
 
   // crawl decay graph
@@ -52,10 +47,10 @@ void McDecayGraphAnalyzer::analyze(Graph g) {
 
 }
 
-void McDecayGraphAnalyzer::extract_bdlnu(const McDecayGraphData &crawler_data) {
+void McDecayGraphAnalyzer::extract_bdlnu(const McDecayGraphSummary &crawler_data) {
 
-  for (auto it = crawler_data.b_mesons_.begin();
-       it != crawler_data.b_mesons_.end(); ++it) {
+  for (auto it = crawler_data.b_modes().begin();
+       it != crawler_data.b_modes().end(); ++it) {
 
     if (it->second.size() != 3) continue;
 
@@ -87,7 +82,7 @@ void McDecayGraphAnalyzer::extract_bdlnu(const McDecayGraphData &crawler_data) {
 }
 
 McGraphBfsCrawler::McGraphBfsCrawler(
-    McDecayGraphData &result,
+    McDecayGraphSummary &result,
     const McDecayGraphIntPM &lund_pm) 
   : crawled_result_(result), lund_pm_(lund_pm) {
   crawled_result_.clear();
@@ -98,10 +93,10 @@ void McGraphBfsCrawler::tree_edge(Edge e, const Graph &g) {
   Vertex u = source(e, g);
 
   if (is_bmeson(lund_pm_[u])) {
-    crawled_result_.b_mesons_[u].push_back(target(e, g));
+    (crawled_result_.b_modes())[u].push_back(target(e, g));
     
   } else if (is_dstar(lund_pm_[u])) {
-    crawled_result_.dstar_mesons_[u].push_back(target(e, g));
+    (crawled_result_.dstar_modes())[u].push_back(target(e, g));
   } 
 
 }

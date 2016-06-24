@@ -8,19 +8,8 @@
 #include <CLHEP/Vector/LorentzVector.h>
 
 #include "McDecayGraph.h"
+#include "McDecayGraphSummary.h"
 #include "BToDlnuMode.h"
-
-struct McDecayGraphData {
-
-  public:
-    using Vertex = McDecayGraphTraits::vertex_descriptor;
-
-  public:
-    std::unordered_map<Vertex, std::vector<Vertex>> b_mesons_;
-    std::unordered_map<Vertex, std::vector<Vertex>> dstar_mesons_;
-    
-    void clear();
-};
 
 class McDecayGraphAnalyzer {
 
@@ -47,7 +36,7 @@ class McDecayGraphAnalyzer {
 
   private:
     void clear_cache();
-    void extract_bdlnu(const McDecayGraphData &data);
+    void extract_bdlnu(const McDecayGraphSummary &data);
 
   private:
     std::vector<BToDlnuMode> bdlnu_;
@@ -66,13 +55,13 @@ class McGraphBfsCrawler : public boost::default_bfs_visitor {
 
   public:
 
-    McGraphBfsCrawler(McDecayGraphData &result,
+    McGraphBfsCrawler(McDecayGraphSummary &result,
                       const McDecayGraphIntPM &lund_pm); 
 
     void tree_edge(Edge e, const Graph &g);
 
   private:
-    McDecayGraphData &crawled_result_;
+    McDecayGraphSummary &crawled_result_;
     McDecayGraphIntPM lund_pm_;
 
 };
