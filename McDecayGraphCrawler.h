@@ -5,12 +5,11 @@
 #include <unordered_map>
 
 #include <boost/graph/breadth_first_search.hpp>
-#include <CLHEP/Vector/LorentzVector.h>
 
 #include "McDecayGraph.h"
 #include "McDecayGraphSummary.h"
-#include "BToDlnuMode.h"
 
+// class that curates information from a McDecayGraph
 class McDecayGraphCrawler {
 
   private:
@@ -19,33 +18,19 @@ class McDecayGraphCrawler {
     using Graph = McDecayGraph;
     using Vertex = McDecayGraphTraits::vertex_descriptor;
     using VertexIter = McDecayGraphTraits::vertex_iterator;
-    using InEdgeIter = McDecayGraphTraits::in_edge_iterator;
-    using OutEdgeIter = McDecayGraphTraits::out_edge_iterator;
-    using IntPropertyMap = McDecayGraphIntPM;
-    using DoublePropertyMap = McDecayGraphDoublePM;
-    using LorentzPropertyMap = McDecayGraphLorentzPM;
+    using ConstIntPropertyMap = ConstMcDecayGraphIntPM;
 
   public: 
 
-    McDecayGraphCrawler() {};
+    McDecayGraphCrawler();
     ~McDecayGraphCrawler() {};
 
-    void analyze(Graph g);
-
-    std::vector<BToDlnuMode> get_bdlnu() { return bdlnu_; }
-
-  private:
-    void clear_cache();
-    void extract_bdlnu(const McDecayGraphSummary &data);
-
-  private:
-    std::vector<BToDlnuMode> bdlnu_;
-    IntPropertyMap lund_pm_;
-    LorentzPropertyMap lorentz_pm_;
-    LorentzPropertyMap lorentz_cm_pm_;
+    // curate information from graph `g` and store the results to `summary`
+    void analyze(const Graph &g, McDecayGraphSummary &summary);
 
 };
 
+// visitor customized for the curation
 class McGraphBfsVisitor : public boost::default_bfs_visitor {
 
   public:
@@ -56,13 +41,13 @@ class McGraphBfsVisitor : public boost::default_bfs_visitor {
   public:
 
     McGraphBfsVisitor(McDecayGraphSummary &result,
-                      const McDecayGraphIntPM &lund_pm); 
+                      ConstMcDecayGraphIntPM &lund_pm); 
 
     void tree_edge(Edge e, const Graph &g);
 
   private:
     McDecayGraphSummary &summary_;
-    McDecayGraphIntPM lund_pm_;
+    ConstMcDecayGraphIntPM lund_pm_;
 
 };
 

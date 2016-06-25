@@ -12,6 +12,7 @@
 
 #include "McDecayGraph.h"
 #include "McDecayGraphCrawler.h"
+#include "BToDlnuAnalyzer.h"
 #include "ParticleGraphWriter.h"
 #include "BToDlnuMode.h"
 #include "XSLKin.h"
@@ -45,7 +46,13 @@ int main() {
   // open output file
   std::ofstream fout("test.csv");
 
-  // serialize
+  // initialize worker classes
+  McDecayGraphFactory graph_factory;
+  McDecayGraphSummary summary;
+  McDecayGraphCrawler crawler;
+  BToDlnuAnalyzer bdlnu;
+
+  // main loop
   while (psql.next()) {
 
     pu::string2type(psql.get("eid"), eid);
@@ -69,20 +76,17 @@ int main() {
     std::vector<CLHEP::HepLorentzVector> lorentz_cm = 
       make_lorentz_vector(mcenergycm, mcp3cm, mccosthcm, mcphicm);
 
-    McDecayGraphFactory graph_factory;
     McDecayGraph g = graph_factory.create_graph(
         mc_n_vertices, mc_n_edges, 
         mc_from_vertices, mc_to_vertices, 
         mc_lund_id, mcmass, lorentz, lorentz_cm);
+    crawler.analyze(g, summary);
+    bdlnu.analyze(g, summary);
 
-    McDecayGraphCrawler crawler;
-    crawler.analyze(g);
-
-    std::vector<BToDlnuMode> bdlnu = crawler.get_bdlnu();
-    for (auto it = bdlnu.begin(); it != bdlnu.end(); ++it) {
-      XSLKin kin(it->get_BLab(), it->get_LepLab(), it->get_XLab());
+    for (const auto &sl : bdlnu.bdlnu()) {
+      XSLKin kin(sl.get_BLab(), sl.get_LepLab(), sl.get_XLab());
       fout << kin.q2() << " ";
-      fout << (it->get_LepCM()).e() << std::endl;
+      fout << (sl.get_LepCM()).e() << std::endl;
     }
 
   }

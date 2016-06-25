@@ -1,6 +1,7 @@
 BINARIES = test7
 OBJECTS = XSLKin.o ff_reweight_defs.o ff_reweight_utils.o McDecayGraph.o \
-					McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o
+					McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
+					BToDlnuAnalyzer.o
 
 FF_REWEIGHT_ROOT = /Users/dchao/mctest/ff_reweight
 UTILS_ROOT = $(FF_REWEIGHT_ROOT)/utils

@@ -9,12 +9,16 @@ McDecayGraphFactory::create_graph(int n_vertices, int n_edges,
   const std::vector<CLHEP::HepLorentzVector> &lorentz,
   const std::vector<CLHEP::HepLorentzVector> &lorentz_cm) {
 
+  // initialize empty graph. will build on this incrementally
   Graph g;
 
+  // build the graph structure 
   construct_graph(g, n_vertices, n_edges, from_vertices, to_vertices);
 
+  // attach internal properties
   populate_attributes(g, lund_id, mcmass, lorentz, lorentz_cm);
 
+  // remove irrelevant vertices
   rip_irrelevant_particles(g);
 
   return g;

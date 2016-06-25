@@ -20,12 +20,12 @@ class BToDlnuMode : public DecayMode {
         CLHEP::HepLorentzVector LepCM 
     );
 
-    CLHEP::HepLorentzVector get_BLab() { return BLab_; }
-    CLHEP::HepLorentzVector get_XLab() { return XLab_; }
-    CLHEP::HepLorentzVector get_LepLab() { return LepLab_; }
-    CLHEP::HepLorentzVector get_BCM() { return BCM_; }
-    CLHEP::HepLorentzVector get_XCM() { return XCM_; }
-    CLHEP::HepLorentzVector get_LepCM() { return LepCM_; }
+    CLHEP::HepLorentzVector get_BLab() const { return BLab_; }
+    CLHEP::HepLorentzVector get_XLab() const { return XLab_; }
+    CLHEP::HepLorentzVector get_LepLab() const { return LepLab_; }
+    CLHEP::HepLorentzVector get_BCM() const { return BCM_; }
+    CLHEP::HepLorentzVector get_XCM() const { return XCM_; }
+    CLHEP::HepLorentzVector get_LepCM() const { return LepCM_; }
 
     virtual ~BToDlnuMode() {};
 

@@ -3,6 +3,7 @@
 
 #include "McDecayGraph.h"
 
+// class encapsulating the data curated from a McDecayGraph 
 class McDecayGraphSummary {
 
   public:
@@ -13,19 +14,18 @@ class McDecayGraphSummary {
     McDecayGraphSummary();
     ~McDecayGraphSummary() {};
 
-    void insert_b_mode(const Vertex&, const std::vector<Vertex>&);
-    void insert_dstar_mode(const Vertex&, const std::vector<Vertex>&);
-    void insert_d_mode(const Vertex&, const std::vector<Vertex>&);
-
+    // returns reference to a map associating mother vertices to 
+    // their daughter vertices
     const std::unordered_map<Vertex, std::vector<Vertex>>& b_modes() const;
     std::unordered_map<Vertex, std::vector<Vertex>>& b_modes();
 
-    const std::unordered_map<Vertex, std::vector<Vertex>>& dstar_modes() const;
+    const std::unordered_map<Vertex,std::vector<Vertex>>& dstar_modes() const;
     std::unordered_map<Vertex, std::vector<Vertex>>& dstar_modes();
 
     const std::unordered_map<Vertex, std::vector<Vertex>>& d_modes() const;
     std::unordered_map<Vertex, std::vector<Vertex>>& d_modes();
 
+    // clears cached information 
     void clear();
 
   private:
@@ -72,24 +72,6 @@ inline const std::unordered_map<McDecayGraphSummary::Vertex,
                           std::vector<McDecayGraphSummary::Vertex>>& 
 McDecayGraphSummary::d_modes() const {
   return d_modes_;
-}
-
-inline void 
-McDecayGraphSummary::insert_b_mode(
-    const Vertex &u, const std::vector<Vertex> &daughters) {
-  b_modes_[u] = daughters;
-}
-
-inline void 
-McDecayGraphSummary::insert_dstar_mode(
-    const Vertex &u, const std::vector<Vertex> &daughters) {
-  dstar_modes_[u] = daughters;
-}
-
-inline void 
-McDecayGraphSummary::insert_d_mode(
-    const Vertex &u, const std::vector<Vertex> &daughters) {
-  d_modes_[u] = daughters;
 }
 
 #endif
