@@ -84,9 +84,8 @@ int main() {
     bdlnu.analyze(g, summary);
 
     for (const auto &sl : bdlnu.bdlnu()) {
-      BXlnuKin kin(sl.get_BLab(), sl.get_XLab(), sl.get_LepLab());
-      fout << kin.q2() << " ";
-      fout << (sl.get_LepCM()).e() << std::endl;
+      fout << sl.q2() << " ";
+      fout << sl.LepB().e() << std::endl;
     }
 
   }

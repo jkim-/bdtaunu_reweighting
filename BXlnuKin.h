@@ -27,11 +27,11 @@ class BXlnuKin {
     const CLHEP::HepLorentzVector& LepB() const { return _LepB; }
 
     // accessors for kinematic quantities derived from the SL decay
-    double q2(){ return _q2; }
-    double ctl(){ return _ctl; }
-    double theta_l(){ return _theta_l; }
-    double w(){ return _w; }
-    double z();
+    double q2() const { return _q2; }
+    double ctl() const { return _ctl; }
+    double theta_l() const { return _theta_l; }
+    double w() const { return _w; }
+    double z() const ;
 
 
   protected:
@@ -57,7 +57,7 @@ class BXlnuKin {
     
 };
 
-inline double BXlnuKin::z(){
+inline double BXlnuKin::z() const {
   return (std::sqrt(_w+1.)-std::sqrt(2.))/(std::sqrt(_w+1.)+std::sqrt(2.));
 }
 

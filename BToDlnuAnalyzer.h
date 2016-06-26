@@ -29,7 +29,6 @@ class BToDlnuAnalyzer {
 
     ConstIntPropertyMap lund_pm_;
     ConstLorentzPropertyMap lorentz_pm_;
-    ConstLorentzPropertyMap lorentz_cm_pm_;
 };
 
 #endif
