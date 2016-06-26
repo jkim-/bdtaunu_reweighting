@@ -5,21 +5,21 @@
 #include <cmath>
 #include <cstdlib>
 
-extern const double twoPi;
-
-extern const int Upsilon4SLund;
-extern const int B0Lund;
-extern const int BpLund;
-extern const int DstarpLund;
-extern const int Dstar0Lund;
-extern const int DpLund;
-extern const int D0Lund;
-extern const int eLund;
-extern const int muLund;
-extern const int tauLund;
-extern const int nueLund;
-extern const int numuLund;
-extern const int nutauLund;
+constexpr double twoPi = 2*M_PI;
+constexpr int Upsilon4SLund = 70553;
+constexpr int B0Lund = 511;
+constexpr int BpLund = 521;
+constexpr int DstarpLund = 413;
+constexpr int Dstar0Lund = 423;
+constexpr int DpLund = 411;
+constexpr int D0Lund = 421;
+constexpr int eLund = 11;
+constexpr int muLund = 13;
+constexpr int tauLund = 15;
+constexpr int nueLund = 12;
+constexpr int numuLund = 14;
+constexpr int nutauLund = 16;
+constexpr int gammaLund = 22;
 
 inline bool is_bmeson(int lund) {
   int abslund = abs(lund);

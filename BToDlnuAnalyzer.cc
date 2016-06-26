@@ -14,6 +14,35 @@ void BToDlnuAnalyzer::analyze(
   for (auto it = summary.b_modes().begin();
        it != summary.b_modes().end(); ++it) {
 
+    std::vector<int> decay_lunds;
+
+    Vertex u = it->first;
+    decay_lunds.push_back(lund_pm_[u]);
+    for (const auto & v : it->second) {
+      decay_lunds.push_back(lund_pm_[v]);
+    }
+
+    BSemiLepCode sl_code = bsl_dict_.find(decay_lunds);
+    if (sl_code == BSemiLepCode::B_Dstar_e) {
+      CLHEP::HepLorentzVector BLab, BCM, XLab, XCM, LepLab, LepCM;
+      BLab = lorentz_pm_[u];
+      BCM = lorentz_cm_pm_[u];
+      for (const auto & v : it->second) {
+        if (is_lepton(lund_pm_[v])) {
+          LepLab = lorentz_pm_[v];
+          LepCM = lorentz_cm_pm_[v];
+        } else if (is_dstar(lund_pm_[v])) {
+          XLab = lorentz_pm_[v];
+          XCM = lorentz_cm_pm_[v];
+        }
+      }
+      bdlnu_.push_back({ BLab, XLab, LepLab, BCM, XCM, LepCM});
+    }
+  }
+
+  /*for (auto it = summary.b_modes().begin();
+       it != summary.b_modes().end(); ++it) {
+
     if (it->second.size() != 3) continue;
 
     CLHEP::HepLorentzVector BLab, BCM, XLab, XCM, LepLab, LepCM;
@@ -41,5 +70,6 @@ void BToDlnuAnalyzer::analyze(
       bdlnu_.push_back({ BLab, XLab, LepLab, BCM, XCM, LepCM});
     }
   }
+  */
 }
 

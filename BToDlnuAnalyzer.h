@@ -5,6 +5,7 @@
 
 #include "McDecayGraph.h"
 #include "McDecayGraphSummary.h"
+#include "BSemiLepDict.h"
 #include "BToDlnuMode.h"
 
 class BToDlnuAnalyzer {
@@ -16,12 +17,15 @@ class BToDlnuAnalyzer {
     using ConstLorentzPropertyMap = ConstMcDecayGraphLorentzPM;
 
   public:
+
     void analyze(const Graph &g, const McDecayGraphSummary &summary);
 
     const std::vector<BToDlnuMode>& bdlnu() const { return bdlnu_; }
 
   private:
     std::vector<BToDlnuMode> bdlnu_;
+
+    BSemiLepDict bsl_dict_;
 
     ConstIntPropertyMap lund_pm_;
     ConstLorentzPropertyMap lorentz_pm_;
