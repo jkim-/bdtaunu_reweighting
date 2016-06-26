@@ -15,7 +15,7 @@
 #include "BToDlnuAnalyzer.h"
 #include "ParticleGraphWriter.h"
 #include "BToDlnuMode.h"
-#include "XSLKin.h"
+#include "BXlnuKin.h"
 
 namespace pu = pgstring_utils;
 
@@ -84,7 +84,7 @@ int main() {
     bdlnu.analyze(g, summary);
 
     for (const auto &sl : bdlnu.bdlnu()) {
-      XSLKin kin(sl.get_BLab(), sl.get_LepLab(), sl.get_XLab());
+      BXlnuKin kin(sl.get_BLab(), sl.get_XLab(), sl.get_LepLab());
       fout << kin.q2() << " ";
       fout << (sl.get_LepCM()).e() << std::endl;
     }

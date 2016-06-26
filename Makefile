@@ -1,5 +1,5 @@
 BINARIES = test7
-OBJECTS = XSLKin.o ff_reweight_utils.o McDecayGraph.o \
+OBJECTS = BXlnuKin.o BVlnuKin.o ff_reweight_utils.o McDecayGraph.o \
 					McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
 					BToDlnuAnalyzer.o BSemiLepDict.o
 
