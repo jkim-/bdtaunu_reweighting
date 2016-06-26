@@ -21,9 +21,10 @@ class BXlnuKin {
     virtual ~BXlnuKin() {};
 
     // accessors to the 4-vectors participating in the decay. 
-    CLHEP::HepLorentzVector BLab(){ return _BLab; };
-    CLHEP::HepLorentzVector XLab(){ return _XLab; }
-    CLHEP::HepLorentzVector LepLab(){ return _LepLab; }
+    const CLHEP::HepLorentzVector& BLab() const { return _BLab; };
+    const CLHEP::HepLorentzVector& XLab() const { return _XLab; }
+    const CLHEP::HepLorentzVector& LepLab() const { return _LepLab; }
+    const CLHEP::HepLorentzVector& LepB() const { return _LepB; }
 
     // accessors for kinematic quantities derived from the SL decay
     double q2(){ return _q2; }
@@ -34,13 +35,21 @@ class BXlnuKin {
 
 
   protected:
-    virtual void clear_cache();
-    virtual void compute_kinematics();   
+    virtual void initialize_cache();
+    virtual void initialize_boosted_vectors();
+    virtual void initialize_kinematics();   
 
   protected:
     CLHEP::HepLorentzVector _BLab;
     CLHEP::HepLorentzVector _XLab;
     CLHEP::HepLorentzVector _LepLab;
+
+    CLHEP::HepLorentzVector _XB;
+    CLHEP::HepLorentzVector _WLab;
+    CLHEP::HepLorentzVector _WB;
+    CLHEP::HepLorentzVector _LepB;
+    CLHEP::HepLorentzVector _LepW;
+
     double _ctl;
     double _theta_l;
     double _q2;

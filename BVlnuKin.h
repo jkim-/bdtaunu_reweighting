@@ -24,7 +24,7 @@ class BVlnuKin : public BXlnuKin {
     ~BVlnuKin() {};
 
     // accessors to the 4-vectors participating in the decay. 
-    CLHEP::HepLorentzVector XdauLab(){ return _XdauLab; }
+    const CLHEP::HepLorentzVector& XdauLab() const { return _XdauLab; }
 
     // accessors for kinematic quantities derived from the SL decay
     double ctv(){ return _ctv; }
@@ -32,11 +32,13 @@ class BVlnuKin : public BXlnuKin {
     double chi(){ return _chi; }
 
   private:
-    void clear_cache();
-    void compute_kinematics();   
+    void initialize_cache();
+    void initialize_boosted_vectors();
+    void initialize_kinematics();   
 
   private:
     CLHEP::HepLorentzVector _XdauLab;
+    CLHEP::HepLorentzVector _VD_X;
     double _ctv;
     double _chi;
     double _theta_v;
