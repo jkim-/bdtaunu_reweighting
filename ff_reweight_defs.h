@@ -5,7 +5,8 @@
 #include <cmath>
 #include <cstdlib>
 
-constexpr double twoPi = 2*M_PI;
+constexpr double twoPI = 6.2831853071795864769;
+constexpr double PI = 3.1415926535897932384;
 constexpr int Upsilon4SLund = 70553;
 constexpr int B0Lund = 511;
 constexpr int BpLund = 521;
@@ -20,6 +21,20 @@ constexpr int nueLund = 12;
 constexpr int numuLund = 14;
 constexpr int nutauLund = 16;
 constexpr int gammaLund = 22;
+
+constexpr double mBp = 5.2792;
+constexpr double mB0 = 5.2795;
+constexpr double mDp = 1.8696;
+constexpr double mD0 = 1.8648;
+constexpr double mTau = 1.7768;
+constexpr double mMu  = 0.10566;
+constexpr double mE   = 0.000511;
+constexpr double Vcb  = 0.03912;
+constexpr double V11  = 1.0816;
+constexpr double GF   = 0.000011664;
+constexpr double hbar = 6.582119e-25;
+constexpr double mb_quark = 4.20;  // [GeV] in the MSbar scheme, evaluated at mb.
+constexpr double mc_quark = 0.901; // From Xing, Zhang, Zhou (2008)
 
 inline bool is_bmeson(int lund) {
   int abslund = abs(lund);

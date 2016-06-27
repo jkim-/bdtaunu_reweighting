@@ -62,7 +62,7 @@ void BVlnuKin::initialize_kinematics() {
   // The return value of atan2 lies in the range (-pi, +pi), so add 2*pi to 
   // negative values to obtain the range (0,2*pi).
   if (_chi<0) { 
-    _chi += twoPi;
+    _chi += twoPI;
   }
  
 }

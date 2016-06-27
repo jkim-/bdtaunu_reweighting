@@ -1,7 +1,8 @@
-BINARIES = test7
+BINARIES = test8
 OBJECTS = BXlnuKin.o BVlnuKin.o ff_reweight_utils.o McDecayGraph.o \
 					McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
-					BToDlnuAnalyzer.o BSemiLepDict.o
+					BToDlnuAnalyzer.o BSemiLepDict.o \
+					ISGW2PseudoscalarFF.o BPlnuDecayRate.o 
 
 FF_REWEIGHT_ROOT = /Users/dchao/mctest/ff_reweight
 UTILS_ROOT = $(FF_REWEIGHT_ROOT)/utils
