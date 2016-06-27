@@ -3,6 +3,10 @@
 #include "ff_reweight_defs.h"
 #include "BPlnuDecayRate.h"
 
+inline double compute_coupling_size() {
+  return GF*GF*Vcb*Vcb/pow(twoPI, 3);
+}
+
 BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml)
   : mB_(mB), mD_(mD), ml_(ml) {
 
@@ -29,28 +33,41 @@ BPlnuDecayRate::~BPlnuDecayRate() {
   cleanup();
 }
 
-double BPlnuDecayRate::dGamma_dq2dctl(double q2, double ctl) {
+void BPlnuDecayRate::compute_pWhFF(double q2, 
+    double &pW, double &hl, double &hs, double &hsl) const {
 
-  // fplus, fminus
-  double fplus, fminus;
+  double fplus, fminus; 
   ff_->compute_ff(q2, fplus, fminus);
 
-  double pW = 
-    mB_*mB_*mB_*mB_ + mD_*mD_*mD_*mD_ + q2*q2 -
-    2.0*mB_*mB_*mD_*mD_ - 2.0*mB_*mB_*q2 - 2.0*mD_*mD_*q2;
-
+  pW = mB_*mB_*mB_*mB_ + mD_*mD_*mD_*mD_ + q2*q2 -
+       2.0*mB_*mB_*mD_*mD_ - 2.0*mB_*mB_*q2 - 2.0*mD_*mD_*q2;
   double h0 = 2.0 * mB_ * pW * fplus / sqrt(q2);
   double ht = ((mB_*mB_-mD_*mD_)*fplus + q2*fminus) / sqrt(q2);
-  double hl = h0*h0;
-  double hs = 3.0*ht*ht;
-  double hsl = ht*h0;
+  hl = h0*h0;
+  hs = 3.0*ht*ht;
+  hsl = ht*h0;
+}
 
-  double result = 
-    0.75*(1-ctl*ctl)*hl +
-    (ml_*ml_/(2.0*q2)) * (1.5*ctl*ctl*hl + 0.5*hs + 3.0*ctl*hsl);
+double BPlnuDecayRate::dGamma_dq2(double q2) const {
 
-  result *= (q2-ml_*ml_)*(q2-ml_*ml_)*pW / (12*mB_*mB_*q2);
-  result *= GF*GF*Vcb*Vcb/pow(twoPI, 3);
+  double pW, hl, hs, hsl;
+  compute_pWhFF(q2, pW, hl, hs, hsl);
+
+  double result = compute_non_angular(q2, pW);
+  result *= (1+(ml_*ml_/(2.0*q2)))*hl + hs;
+  result *= compute_coupling_size();
+
+  return result;
+}
+
+double BPlnuDecayRate::dGamma_dq2dctl(double q2, double ctl) const {
+
+  double pW, hl, hs, hsl;
+  compute_pWhFF(q2, pW, hl, hs, hsl);
+
+  double result = compute_non_angular(q2, pW);
+  result *= compute_angular(q2, ctl, hl, hs, hsl);
+  result *= compute_coupling_size();
 
   return result;
 }
