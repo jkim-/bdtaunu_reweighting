@@ -9,6 +9,10 @@ ISGW2PseudoscalarFF::ISGW2PseudoscalarFF(double mB, double mD)
 
 ISGW2PseudoscalarFF::~ISGW2PseudoscalarFF() {}
 
+PseudoscalarFF* ISGW2PseudoscalarFF::clone() {
+  return new ISGW2PseudoscalarFF(mB_, mD_);
+}
+
 double EvtGetas(double massq, double massx) {
   double lqcd2 = 0.04;
   double nflav = 4;

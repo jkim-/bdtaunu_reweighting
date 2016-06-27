@@ -2,7 +2,8 @@ BINARIES = test8
 OBJECTS = BXlnuKin.o BVlnuKin.o ff_reweight_utils.o McDecayGraph.o \
 					McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
 					BToDlnuAnalyzer.o BSemiLepDict.o \
-					ISGW2PseudoscalarFF.o BPlnuDecayRate.o 
+					ISGW2PseudoscalarFF.o CLNPseudoscalarFF.o \
+					gauss_legendre.o BPlnuDecayRate.o 
 
 FF_REWEIGHT_ROOT = /Users/dchao/mctest/ff_reweight
 UTILS_ROOT = $(FF_REWEIGHT_ROOT)/utils
@@ -37,6 +38,9 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
 all : $(BINARIES)
+
+gauss_legendre_example : $(addprefix $(BUILDDIR)/, gauss_legendre_example.o gauss_legendre.o)
+	$(CXX) $(LDFLAGS) $^ -o $@
 
 test% : $(addprefix $(BUILDDIR)/, test%.o $(OBJECTS))
 	$(CXX) $(LDFLAGS) $^ -o $@

@@ -1,5 +1,5 @@
-#ifndef __ISGW2PSEUDOSCALARFF_H__
-#define __ISGW2PSEUDOSCALARFF_H__
+#ifndef __CLNPSEUDOSCALARFF_H__
+#define __CLNPSEUDOSCALARFF_H__
 
 // Author: Daniel Chao, dchao@caltech.edu
 // Special thanks to EvtGen and Michael Mazur for providing 
@@ -7,10 +7,12 @@
 
 #include "PseudoscalarFF.h"
 
-class ISGW2PseudoscalarFF : public PseudoscalarFF {
+class CLNPseudoscalarFF : public PseudoscalarFF {
   public: 
-    ISGW2PseudoscalarFF(double mB, double mD);
-    ~ISGW2PseudoscalarFF();
+    CLNPseudoscalarFF(double mB, double mD, 
+        double rho2=1.186, double V11 = 1.0816, double Delta=1.0);
+
+    ~CLNPseudoscalarFF();
 
     PseudoscalarFF* clone();
 
@@ -19,6 +21,10 @@ class ISGW2PseudoscalarFF : public PseudoscalarFF {
   private:
     double mB_;
     double mD_;
+
+    double rho2_;
+    double V11_;
+    double Delta_;
 };
 
 #endif
