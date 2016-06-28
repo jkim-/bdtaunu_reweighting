@@ -3,13 +3,12 @@
 
 #include <string>
 
+#include "ff_reweight_utils.h"
 #include "VectorFF.h"
-
-double BVlnu_dGamma_dq2_adapter(double, void*);
 
 class BVlnuDecayRate {
 
-  friend double BVlnu_dGamma_dq2_adapter(double, void*);
+  friend double dGamma_dq2_adapter<BVlnuDecayRate>(double, void*);
 
   public:
     BVlnuDecayRate(double mB, double mDs, double ml, 
@@ -72,10 +71,6 @@ class BVlnuDecayRate {
 
     VectorFF *ff_;
 };
-
-inline double BVlnu_dGamma_dq2_adapter(double q2, void *obj) {
-  return static_cast<BVlnuDecayRate*>(obj)->dGamma_dq2_aux(q2);
-}
 
 inline double BVlnuDecayRate::compute_non_angular(double q2, double pW) const {
   return (q2-ml_*ml_)*(q2-ml_*ml_)*pW / (12.0*mB_*mB_*q2);

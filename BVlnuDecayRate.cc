@@ -36,7 +36,7 @@ BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml,
 
   }
 
-  norm_ = gauss_legendre(256, BVlnu_dGamma_dq2_adapter, this, q2min(), q2max());
+  norm_ = gauss_legendre(256, dGamma_dq2_adapter<BVlnuDecayRate>, this, q2min(), q2max());
 }
 
 BVlnuDecayRate::BVlnuDecayRate(const BVlnuDecayRate &rhs) {

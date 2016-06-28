@@ -3,13 +3,12 @@
 
 #include <string>
 
+#include "ff_reweight_utils.h"
 #include "PseudoscalarFF.h"
-
-double BPlnu_dGamma_dq2_adapter(double q2, void *obj);
 
 class BPlnuDecayRate {
 
-  friend double BPlnu_dGamma_dq2_adapter(double, void*);
+  friend double dGamma_dq2_adapter<BPlnuDecayRate>(double, void*);
 
   public:
     BPlnuDecayRate(double mB, double mD, double ml, 
@@ -45,10 +44,6 @@ class BPlnuDecayRate {
     PseudoscalarFF *ff_;
     double norm_;
 };
-
-inline double BPlnu_dGamma_dq2_adapter(double q2, void *obj) {
-  return static_cast<BPlnuDecayRate*>(obj)->dGamma_dq2_aux(q2);
-}
 
 inline double BPlnuDecayRate::compute_non_angular(double q2, double pW) const {
   return (q2-ml_*ml_)*(q2-ml_*ml_)*pW / (12.0*mB_*mB_*q2);
