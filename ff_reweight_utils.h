@@ -15,6 +15,9 @@ std::vector<CLHEP::HepLorentzVector> make_lorentz_vector(
 template<typename DecRateT>
 double dGamma_dq2_adapter(double q2, void *obj);
 
+template<typename DecRateT>
+double dGamma_dw_adapter(double w, void *obj);
+
 #include "ff_reweight_utils_impl.h"
 
 #endif
