@@ -5,11 +5,11 @@
 
 #include "PseudoscalarFF.h"
 
-double dGamma_dq2_adapter(double q2, void *obj);
+double BPlnu_dGamma_dq2_adapter(double q2, void *obj);
 
 class BPlnuDecayRate {
 
-  friend double dGamma_dq2_adapter(double, void*);
+  friend double BPlnu_dGamma_dq2_adapter(double, void*);
 
   public:
     BPlnuDecayRate(double mB, double mD, double ml, 
@@ -46,7 +46,7 @@ class BPlnuDecayRate {
     double norm_;
 };
 
-inline double dGamma_dq2_adapter(double q2, void *obj) {
+inline double BPlnu_dGamma_dq2_adapter(double q2, void *obj) {
   return static_cast<BPlnuDecayRate*>(obj)->dGamma_dq2_aux(q2);
 }
 

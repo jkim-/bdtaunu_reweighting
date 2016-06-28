@@ -13,6 +13,8 @@ PseudoscalarFF* ISGW2PseudoscalarFF::clone() {
   return new ISGW2PseudoscalarFF(mB_, mD_);
 }
 
+namespace {
+
 double EvtGetas(double massq, double massx) {
   double lqcd2 = 0.04;
   double nflav = 4;
@@ -26,24 +28,13 @@ double EvtGetas(double massq, double massx) {
   return temp;
 }
 
-double EvtGetas(double mass) {
-  double lqcd2 = 0.04;
-  double nflav = 4;
-  double temp = 0.6;
-  if ( mass > 0.6 ) {
-    if ( mass < 1.85 ) {
-      nflav = 3.0;}
-    temp = 12.0*PI / ( 33.0 - 2.0*nflav) /
-      log( mass*mass/lqcd2);
-  }
-  return temp;
-}
-
 double EvtGetGammaji(double z) {
   double temp;
   temp = 2+((2.0*z)/(1-z))*log(z);
   temp = -1.0*temp;
   return temp;
+}
+
 }
 
 void ISGW2PseudoscalarFF::compute_ff(

@@ -11,7 +11,7 @@ CLNPseudoscalarFF::CLNPseudoscalarFF(double mB, double mD,
 CLNPseudoscalarFF::~CLNPseudoscalarFF() {}
 
 PseudoscalarFF* CLNPseudoscalarFF::clone() {
-  return new CLNPseudoscalarFF(mB_, mD_);
+  return new CLNPseudoscalarFF(mB_, mD_, rho2_, V11_, Delta_);
 }
 
 void CLNPseudoscalarFF::compute_ff(double q2, double &fplus, double &fminus) const {

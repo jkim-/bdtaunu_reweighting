@@ -7,8 +7,12 @@
 #include "CLNPseudoscalarFF.h"
 #include "BPlnuDecayRate.h"
 
+namespace {
+
 inline double compute_coupling_size() {
   return GF*GF*Vcb*Vcb/pow(twoPI, 3);
+}
+
 }
 
 BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml,
@@ -31,7 +35,7 @@ BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml,
 
   }
 
-  norm_ = gauss_legendre(256, dGamma_dq2_adapter, this, q2min(), q2max());
+  norm_ = gauss_legendre(256, BPlnu_dGamma_dq2_adapter, this, q2min(), q2max());
 
 }
 
