@@ -1,7 +1,7 @@
 BINARIES = 
-OBJECTS = PsqlReader.o CsvWriter.o
+OBJECTS = PsqlReader.o CsvWriter.o gauss_legendre.o
 
-LIBNAME = libff_reweight_utils.so
+LIBNAME = libreweight_utils.so
 
 BOOST_ROOT = /usr/local/boost_1_56_0
 BOOST_LIBS = $(BOOST_ROOT)/stage/lib
