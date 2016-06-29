@@ -1,5 +1,5 @@
 BINARIES = 
-OBJECTS = PsqlReader.o CsvWriter.o gauss_legendre.o
+OBJECTS = PsqlReader.o CsvWriter.o gauss_legendre.o ff_reweight_utils.o
 
 LIBNAME = libreweight_utils.so
 
