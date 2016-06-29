@@ -7,6 +7,7 @@
 
 #include "ff_reweight_defs.h"
 #include "BDss0lnuDecayRate.h"
+#include "BD1primelnuDecayRate.h"
 
 template <typename DecayRateT>
 void print_dGamma_dw_density(
@@ -23,7 +24,7 @@ int main() {
 
   std::ofstream fout;
 
-  // B0 -> D*0 e nu
+  // B0 -> D*_0 e nu
   fout.open("BDss0enu_ISGW2.csv");
   BDss0lnuDecayRate BDss0enu_ISGW2(mB0, mDss0, mE, "ISGW2");
   print_dGamma_dw_density(fout, BDss0enu_ISGW2, 1000);
@@ -37,6 +38,22 @@ int main() {
   fout.open("BDss0enu_LLSWB2.csv");
   BDss0lnuDecayRate BDss0enu_LLSWB2(mB0, mDss0, mE, "LLSWB2");
   print_dGamma_dw_density(fout, BDss0enu_LLSWB2, 1000);
+  fout.close();
+
+  // B0 -> D'_1 e nu
+  fout.open("BD1primeenu_ISGW2.csv");
+  BD1primelnuDecayRate BD1primeenu_ISGW2(mB0, mD1prime, mE, "ISGW2");
+  print_dGamma_dw_density(fout, BD1primeenu_ISGW2, 1000);
+  fout.close();
+
+  fout.open("BD1primeenu_LLSWB1.csv");
+  BD1primelnuDecayRate BD1primeenu_LLSWB1(mB0, mD1prime, mE, "LLSWB1");
+  print_dGamma_dw_density(fout, BD1primeenu_LLSWB1, 1000);
+  fout.close();
+
+  fout.open("BD1primeenu_LLSWB2.csv");
+  BD1primelnuDecayRate BD1primeenu_LLSWB2(mB0, mD1prime, mE, "LLSWB2");
+  print_dGamma_dw_density(fout, BD1primeenu_LLSWB2, 1000);
   fout.close();
 
   return 0;

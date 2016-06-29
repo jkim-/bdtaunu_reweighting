@@ -29,6 +29,7 @@ constexpr double mD0 = 1.8648;
 constexpr double mDps = 2.01025;
 constexpr double mD0s = 2.00696;
 constexpr double mDss0 = 2.308;
+constexpr double mD1prime = 2.461;
 constexpr double mTau = 1.7768;
 constexpr double mMu  = 0.10566;
 constexpr double mE   = 0.000511;

@@ -5,7 +5,8 @@ OBJECTS = BXlnuKin.o BVlnuKin.o ff_reweight_utils.o McDecayGraph.o \
 					ISGW2PseudoscalarFF.o CLNPseudoscalarFF.o \
 					ISGW2VectorFF.o CLNVectorFF.o \
 					gauss_legendre.o BPlnuDecayRate.o BVlnuDecayRate.o \
-					BDss0FF.o BDss0lnuDecayRate.o
+					BDss0FF.o BDss0lnuDecayRate.o \
+					BD1primeFF.o BD1primelnuDecayRate.o
 
 FF_REWEIGHT_ROOT = /Users/dchao/mctest/ff_reweight
 UTILS_ROOT = $(FF_REWEIGHT_ROOT)/utils

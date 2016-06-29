@@ -1,5 +1,5 @@
-#ifndef __BPLNUDECAYRATE_H__
-#define __BPLNUDECAYRATE_H__
+#ifndef __BDSS0LNUDECAYRATE_H__
+#define __BDSS0LNUDECAYRATE_H__
 
 #include <string>
 

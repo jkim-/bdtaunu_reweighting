@@ -131,8 +131,6 @@ void LLSWBDss0FF::compute_ff(double q2, double &gp, double &gm) const {
  
   double trueW = (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_);
   double tau_1_org = tau_1_org_;
-  double mB = mB_;
-  double mD = mDss_;
 
   double tau_p = tau_1_;
 
