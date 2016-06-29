@@ -1,12 +1,9 @@
 # directory configuration
 # -----------------------
 
-BINARIES = test7
+BINARIES = test_bdlnu test_bdsslnu
 
-# objects to package into the shared library
-OBJECTS = McDecayGraph.o \
-          McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
-          BToDlnuAnalyzer.o BSemiLepDict.o 
+OBJECTS = 
 
 # external dependencies
 # ---------------------
