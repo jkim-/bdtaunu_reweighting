@@ -4,7 +4,7 @@
 # objects to package into the shared library
 OBJECTS = BXlnuKin.o BVlnuKin.o \
           ISGW2PseudoscalarFF.o CLNPseudoscalarFF.o \
-          ISGW2VectorFF.o CLNVectorFF.o \
+          ISGW2VectorFF.o CLNVectorFF.o LinearQ2VectorFF.o \
           BPlnuDecayRate.o BVlnuDecayRate.o \
           BDss0FF.o BDss0lnuDecayRate.o \
           BD1primeFF.o BD1primelnuDecayRate.o \
@@ -62,7 +62,7 @@ $(DEPDIR)/%.d: ;
 -include $(patsubst %,$(DEPDIR)/%.d,$(notdir $(basename $(SRCS))))
 
 clean : 
-	@rm -f *~ $(BINARIES) $(LIBDIR)/* $(BUILDDIR)/*
+	@rm -f *~ $(BINARIES) $(BUILDDIR)/* $(LIBNAME)
 
 cleanall : clean
 	@rm -f $(DEPDIR)/*

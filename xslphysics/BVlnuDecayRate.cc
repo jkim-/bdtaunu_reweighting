@@ -8,6 +8,7 @@
 #include "BVlnuDecayRate.h"
 #include "ISGW2VectorFF.h"
 #include "CLNVectorFF.h"
+#include "LinearQ2VectorFF.h"
 
 namespace {
 
@@ -28,6 +29,10 @@ BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml,
   } else if (ff_model_name == "CLN") {
 
     ff_ = new CLNVectorFF(mB_, mDs_);
+
+  } else if (ff_model_name == "LinearQ2") {
+
+    ff_ = new LinearQ2VectorFF(mB_, mDs_);
 
   } else {
 
