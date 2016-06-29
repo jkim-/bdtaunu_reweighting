@@ -8,6 +8,7 @@
 #include "ff_reweight_defs.h"
 #include "BDss0lnuDecayRate.h"
 #include "BD1primelnuDecayRate.h"
+#include "BD1lnuDecayRate.h"
 
 template <typename DecayRateT>
 void print_dGamma_dw_density(
@@ -54,6 +55,22 @@ int main() {
   fout.open("BD1primeenu_LLSWB2.csv");
   BD1primelnuDecayRate BD1primeenu_LLSWB2(mB0, mD1prime, mE, "LLSWB2");
   print_dGamma_dw_density(fout, BD1primeenu_LLSWB2, 1000);
+  fout.close();
+
+  // B0 -> D_1 e nu
+  fout.open("BD1enu_ISGW2.csv");
+  BD1lnuDecayRate BD1enu_ISGW2(mB0, mD1p, mE, "ISGW2");
+  print_dGamma_dw_density(fout, BD1enu_ISGW2, 1000);
+  fout.close();
+
+  fout.open("BD1enu_LLSWB1.csv");
+  BD1lnuDecayRate BD1enu_LLSWB1(mB0, mD1p, mE, "LLSWB1");
+  print_dGamma_dw_density(fout, BD1enu_LLSWB1, 1000);
+  fout.close();
+
+  fout.open("BD1enu_LLSWB2.csv");
+  BD1lnuDecayRate BD1enu_LLSWB2(mB0, mD1p, mE, "LLSWB2");
+  print_dGamma_dw_density(fout, BD1enu_LLSWB2, 1000);
   fout.close();
 
   return 0;
