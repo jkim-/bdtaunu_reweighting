@@ -11,9 +11,8 @@
 #include "ff_reweight_utils.h"
 
 #include "McDecayGraph.h"
-#include "McDecayGraphCrawler.h"
+#include "McDecayModeCurator.h"
 #include "BToDlnuAnalyzer.h"
-#include "ParticleGraphWriter.h"
 #include "BToDlnuMode.h"
 #include "BXlnuKin.h"
 
@@ -48,8 +47,8 @@ int main() {
 
   // initialize worker classes
   McDecayGraphFactory graph_factory;
-  McDecayGraphSummary summary;
-  McDecayGraphCrawler crawler;
+  McDecayModeSummary summary;
+  McDecayModeCurator curator;
   BToDlnuAnalyzer bdlnu;
 
   // main loop
@@ -80,7 +79,7 @@ int main() {
         mc_n_vertices, mc_n_edges, 
         mc_from_vertices, mc_to_vertices, 
         mc_lund_id, mcmass, lorentz, lorentz_cm);
-    crawler.analyze(g, summary);
+    curator.curate(g, summary);
     bdlnu.analyze(g, summary);
 
     for (const auto &sl : bdlnu.bdlnu()) {

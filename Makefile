@@ -4,9 +4,9 @@
 BINARIES = test7
 
 # objects to package into the shared library
-OBJECTS = McDecayGraph.o \
-          McDecayGraphSummary.o McDecayGraphCrawler.o DecayMode.o BToDlnuMode.o \
-          BToDlnuAnalyzer.o BSemiLepDict.o 
+OBJECTS = McDecayGraph.o McDecayModeCurator.o \
+					DecayMode.o BToDlnuMode.o BToDlnuAnalyzer.o \
+					BSemiLepDict.o 
 
 # external dependencies
 # ---------------------

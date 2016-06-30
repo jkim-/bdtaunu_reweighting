@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "McDecayGraph.h"
-#include "McDecayGraphSummary.h"
+#include "McDecayModeCurator.h"
 #include "BSemiLepDict.h"
 #include "BToDlnuMode.h"
 
@@ -18,7 +18,7 @@ class BToDlnuAnalyzer {
 
   public:
 
-    void analyze(const Graph &g, const McDecayGraphSummary &summary);
+    void analyze(const Graph &g, const McDecayModeSummary &summary);
 
     const std::vector<BToDlnuMode>& bdlnu() const { return bdlnu_; }
 

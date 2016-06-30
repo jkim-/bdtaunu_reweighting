@@ -5,7 +5,7 @@
 #include "BToDlnuAnalyzer.h"
 
 void BToDlnuAnalyzer::analyze(
-    const Graph &g, const McDecayGraphSummary &summary) {
+    const Graph &g, const McDecayModeSummary &summary) {
 
   bdlnu_.clear(); 
   lund_pm_ = get_lund_pm(g);

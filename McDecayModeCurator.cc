@@ -6,12 +6,12 @@
 
 #include <ff_reweight_constants.h>
 
-#include "McDecayGraphCrawler.h"
+#include "McDecayModeCurator.h"
 
-McDecayGraphCrawler::McDecayGraphCrawler() {}
+McDecayModeCurator::McDecayModeCurator() {}
 
-void McDecayGraphCrawler::analyze(
-    const Graph &g, McDecayGraphSummary &summary) {
+void McDecayModeCurator::curate(
+    const Graph &g, McDecayModeSummary &summary) {
 
   // clear the output object and initialize data structures 
   summary.clear();
@@ -34,20 +34,20 @@ void McDecayGraphCrawler::analyze(
   }
 
   // create visitor
-  McGraphBfsVisitor vis(summary, lund_pm);
+  McDecayModeVisitor vis(summary, lund_pm);
 
   // crawl decay graph
   boost::breadth_first_search(g, s, visitor(vis).color_map(color_pm));
 
 }
 
-McGraphBfsVisitor::McGraphBfsVisitor(
-    McDecayGraphSummary &result,
+McDecayModeVisitor::McDecayModeVisitor(
+    McDecayModeSummary &result,
     ConstMcDecayGraphIntPM &lund_pm) 
   : summary_(result), lund_pm_(lund_pm) {
 }
 
-void McGraphBfsVisitor::tree_edge(Edge e, const Graph &g) {
+void McDecayModeVisitor::tree_edge(Edge e, const Graph &g) {
 
   Vertex u = source(e, g);
 
@@ -57,6 +57,9 @@ void McGraphBfsVisitor::tree_edge(Edge e, const Graph &g) {
     
   } else if (is_dstar(lund_pm_[u])) {
     (summary_.dstar_modes())[u].push_back(target(e, g));
+
+  } else if (is_dmeson(lund_pm_[u])) {
+    (summary_.d_modes())[u].push_back(target(e, g));
   } 
 
 }
