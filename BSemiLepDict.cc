@@ -11,9 +11,15 @@ BSemiLepDict::BSemiLepDict() {
 
 BSemiLepDict::~BSemiLepDict() {}
 
-BSemiLepCode BSemiLepDict::find(const std::vector<int> &decay_lunds) {
+BSemiLepCode BSemiLepDict::find(
+    const std::vector<int> &decay_lunds, 
+    bool ignore_FSR) {
+
   std::vector<Symbol> word;
-  for (auto l : decay_lunds) word.push_back(LundToSymbol(l));
+  for (auto l : decay_lunds) {
+    if (ignore_FSR && l == gammaLund) { continue; }
+    word.push_back(LundToSymbol(l));
+  }
   std::sort(word.begin(), word.end());
   word.push_back(Symbol::null);
   return bsl_dict_.find(word);

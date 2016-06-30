@@ -21,7 +21,8 @@ class BSemiLepDict {
     BSemiLepDict();
     ~BSemiLepDict();
 
-    BSemiLepCode find(const std::vector<int> &decay_lunds);
+    BSemiLepCode find(const std::vector<int> &decay_lunds, 
+                      bool ignore_FSR=true);
 
   private:
 
