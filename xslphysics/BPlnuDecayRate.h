@@ -11,6 +11,8 @@ class BPlnuDecayRate {
   friend double dGamma_dq2_adapter<BPlnuDecayRate>(double, void*);
 
   public:
+
+    // supported ff_model_name: "ISGW2", "CLN"
     BPlnuDecayRate(double mB, double mD, double ml, 
                    const std::string &ff_model_name);
     BPlnuDecayRate(const BPlnuDecayRate&);

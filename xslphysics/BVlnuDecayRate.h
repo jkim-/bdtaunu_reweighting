@@ -11,6 +11,8 @@ class BVlnuDecayRate {
   friend double dGamma_dq2_adapter<BVlnuDecayRate>(double, void*);
 
   public:
+    
+    // supported ff_model_name: "ISGW2", "CLN", "LinearQ2"
     BVlnuDecayRate(double mB, double mDs, double ml, 
                    bool isDgamma, bool islplus,
                    const std::string &ff_model_name);
