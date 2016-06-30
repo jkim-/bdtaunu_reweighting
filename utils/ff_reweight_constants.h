@@ -14,6 +14,8 @@ constexpr int DstarpLund = 413;
 constexpr int Dstar0Lund = 423;
 constexpr int DpLund = 411;
 constexpr int D0Lund = 421;
+constexpr int pi0Lund = 111;
+constexpr int pipLund = 211;
 constexpr int eLund = 11;
 constexpr int muLund = 13;
 constexpr int tauLund = 15;
@@ -68,5 +70,23 @@ inline bool is_neutrino(int lund) {
   int abslund = abs(lund);
   return (abslund == nueLund || abslund == numuLund || abslund == nutauLund) ? true : false; 
 }
+
+inline bool is_dstar_softdau(int lund) {
+  int abslund = abs(lund);
+  return (abslund == gammaLund || abslund == pipLund || abslund == pi0Lund) ? true : false; 
+}
+
+inline bool is_gamma(int lund) {
+  return lund == gammaLund;
+}
+
+inline bool is_pion(int lund) {
+  int abslund = abs(lund);
+  return (abslund == pipLund || abslund == pi0Lund) ? true : false; 
+}
+
+inline bool is_e(int lund) { return abs(lund) == eLund; }
+inline bool is_mu(int lund) { return abs(lund) == muLund; }
+inline bool is_tau(int lund) { return abs(lund) == tauLund; }
 
 #endif

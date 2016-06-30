@@ -27,9 +27,9 @@ class BVlnuKin : public BXlnuKin {
     const CLHEP::HepLorentzVector& XdauLab() const { return _XdauLab; }
 
     // accessors for kinematic quantities derived from the SL decay
-    double ctv(){ return _ctv; }
-    double theta_v(){ return _theta_v; }
-    double chi(){ return _chi; }
+    double ctv() const { return _ctv; }
+    double theta_v() const { return _theta_v; }
+    double chi() const { return _chi; }
 
   private:
     void initialize_cache();

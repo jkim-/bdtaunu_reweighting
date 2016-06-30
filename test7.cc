@@ -7,14 +7,14 @@
 
 #include <PsqlReader.h>
 #include <pgstring_utils.h>
+#include <ff_reweight_constants.h>
 
 #include "ff_reweight_utils.h"
 
 #include "McDecayGraph.h"
 #include "McDecayModeCurator.h"
-#include "BToDlnuAnalyzer.h"
+#include "FormFactorAnalyzer.h"
 #include "BToDlnuMode.h"
-#include "BXlnuKin.h"
 
 namespace pu = pgstring_utils;
 
@@ -49,7 +49,7 @@ int main() {
   McDecayGraphFactory graph_factory;
   McDecayModeSummary summary;
   McDecayModeCurator curator;
-  BToDlnuAnalyzer bdlnu;
+  FormFactorAnalyzer analyzer;
 
   // main loop
   while (psql.next()) {
@@ -80,11 +80,13 @@ int main() {
         mc_from_vertices, mc_to_vertices, 
         mc_lund_id, mcmass, lorentz, lorentz_cm);
     curator.curate(g, summary);
-    bdlnu.analyze(g, summary);
+    analyzer.analyze(g, summary);
 
-    for (const auto &sl : bdlnu.bdlnu()) {
-      fout << sl.q2() << " ";
-      fout << sl.LepB().e() << std::endl;
+    for (const auto &sl : analyzer.bdslnu()) {
+      if (is_e(sl.Leplund())) {
+        fout << sl.q2() << " ";
+        fout << sl.LepB().e() << std::endl;
+      }
     }
 
   }
