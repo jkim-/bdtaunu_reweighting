@@ -28,34 +28,19 @@ BSemiLepCode BSemiLepDict::find(
 void BSemiLepDict::PopulateBSLDict() {
 
   bsl_dict_.insert({
-      Symbol::B, Symbol::D, Symbol::e, Symbol::nu,
+      Symbol::B, Symbol::D, Symbol::l, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::B_D_e);
+    }, BSemiLepCode::B_D_l);
 
   bsl_dict_.insert({
-      Symbol::B, Symbol::D, Symbol::mu, Symbol::nu,
+      Symbol::B, Symbol::Ds, Symbol::l, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::B_D_mu);
+    }, BSemiLepCode::B_Ds_l);
 
   bsl_dict_.insert({
-      Symbol::B, Symbol::D, Symbol::tau, Symbol::nu,
+      Symbol::B, Symbol::Dss, Symbol::l, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::B_D_tau);
-
-  bsl_dict_.insert({
-      Symbol::B, Symbol::Ds, Symbol::e, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B_Ds_e);
-
-  bsl_dict_.insert({
-      Symbol::B, Symbol::Ds, Symbol::mu, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B_Ds_mu);
-
-  bsl_dict_.insert({
-      Symbol::B, Symbol::Ds, Symbol::tau, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B_Ds_tau);
+    }, BSemiLepCode::B_Dss_l);
 
 }
 
@@ -66,6 +51,15 @@ BSemiLepDict::LundToSymbol(int lund) const {
     case BpLund:
     case B0Lund:
       return Symbol::B;
+    case D1pLund:
+    case D10Lund:
+    case D2pLund:
+    case D20Lund:
+    case D1primepLund:
+    case D1prime0Lund:
+    case D0sspLund:
+    case D0ss0Lund:
+      return Symbol::Dss;
     case DstarpLund:
     case Dstar0Lund:
       return Symbol::Ds;
@@ -73,11 +67,9 @@ BSemiLepDict::LundToSymbol(int lund) const {
     case D0Lund:
       return Symbol::D;
     case eLund:
-      return Symbol::e;
     case muLund:
-      return Symbol::mu;
     case tauLund:
-      return Symbol::tau;
+      return Symbol::l;
     case nueLund:
     case numuLund:
     case nutauLund:
