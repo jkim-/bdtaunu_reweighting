@@ -24,18 +24,31 @@ constexpr int numuLund = 14;
 constexpr int nutauLund = 16;
 constexpr int gammaLund = 22;
 
+constexpr int D1pLund = 10413;
+constexpr int D10Lund = 10423;
+constexpr int D2pLund = 415;
+constexpr int D20Lund = 425;
+constexpr int D1primepLund = 20413;
+constexpr int D1prime0Lund = 20423;
+constexpr int D0sspLund = 10411;
+constexpr int D0ss0Lund = 10421;
+
 constexpr double mBp = 5.2792;
 constexpr double mB0 = 5.2795;
 constexpr double mDp = 1.8696;
 constexpr double mD0 = 1.8648;
 constexpr double mDps = 2.01025;
 constexpr double mD0s = 2.00696;
-constexpr double mDss0 = 2.308;
-constexpr double mD1prime = 2.461;
+
+constexpr double mD0ss0 = 2.308;
+constexpr double mD0ssp = 2.308;
+constexpr double mD1prime0 = 2.461;
+constexpr double mD1primep = 2.461;
 constexpr double mD1p = 2.427;
 constexpr double mD10 = 2.4222;
 constexpr double mD2p = 2.459;
 constexpr double mD20 = 2.4589;
+
 constexpr double mTau = 1.7768;
 constexpr double mMu  = 0.10566;
 constexpr double mE   = 0.000511;
