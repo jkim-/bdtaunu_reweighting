@@ -19,8 +19,9 @@ UTILS_LIBDIR = $(FF_REWEIGHT_ROOT)/utils
 XSLPHYSICS_INCDIR = $(FF_REWEIGHT_ROOT)/xslphysics
 XSLPHYSICS_LIBDIR = $(FF_REWEIGHT_ROOT)/xslphysics
 
-CLHEP_INCDIR = /usr/local/include
-CLHEP_LIBDIR = /usr/local/lib
+CLHEP_ROOT = /usr/local
+CLHEP_INCDIR = $(CLHEP_ROOT)/include
+CLHEP_LIBDIR = $(CLHEP_ROOT)/lib
 
 BOOST_ROOT = /usr/local/boost_1_56_0
 BOOST_INCDIR = $(BOOST_ROOT)

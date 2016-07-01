@@ -20,8 +20,9 @@ FF_REWEIGHT_ROOT = /Users/dchao/workspace/bdtaunu_reweighting
 UTILS_INCDIR = $(FF_REWEIGHT_ROOT)/utils
 UTILS_LIBDIR = $(FF_REWEIGHT_ROOT)/utils
 
-CLHEP_INCDIR = /usr/local/include
-CLHEP_LIBDIR = /usr/local/lib
+CLHEP_ROOT = /usr/local
+CLHEP_INCDIR = $(CLHEP_ROOT)/include
+CLHEP_LIBDIR = $(CLHEP_ROOT)/lib
 
 INCFLAGS += -I$(UTILS_INCDIR) -I$(CLHEP_INCDIR)
 LDFLAGS += -L $(UTILS_LIBDIR) -L $(CLHEP_LIBDIR) \

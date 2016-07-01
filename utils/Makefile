@@ -6,6 +6,10 @@ LIBNAME = libreweight_utils.so
 BOOST_ROOT = /usr/local/boost_1_56_0
 BOOST_LIBS = $(BOOST_ROOT)/stage/lib
 
+CLHEP_ROOT = /usr/local
+CLHEP_INCS = $(CLHEP_ROOT)/include
+CLHEP_LIBS = $(CLHEP_ROOT)/lib
+
 LIBPQ_ROOT = /usr/local/pgsql
 LIBPQ_INCS = $(LIBPQ_ROOT)/include
 LIBPQ_LIBS = $(LIBPQ_ROOT)/lib
@@ -13,6 +17,7 @@ LIBPQ_LIBS = $(LIBPQ_ROOT)/lib
 INCFLAGS = -I$(BOOST_ROOT) -I$(LIBPQ_INCS)
 LDFLAGS = -L$(BOOST_LIBS) -L$(LIBPQ_LIBS) \
 					-Wl,-rpath,$(BOOST_LIBS) -lboost_program_options \
+					-Wl,-rpath,$(CLHEP_LIBS) -lCLHEP \
 					-Wl,-rpath,$(BOOST_LIBS) -lpq
 
 CXX := g++
