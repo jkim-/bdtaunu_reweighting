@@ -13,6 +13,7 @@ class BVlnuDecayRate {
   public:
     
     // supported ff_model_name: "ISGW2", "CLN", "LinearQ2"
+    BVlnuDecayRate();
     BVlnuDecayRate(double mB, double mDs, double ml, 
                    bool isDgamma, bool islplus,
                    const std::string &ff_model_name);

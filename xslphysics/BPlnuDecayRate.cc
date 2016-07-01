@@ -16,6 +16,10 @@ inline double compute_coupling_size() {
 
 }
 
+BPlnuDecayRate::BPlnuDecayRate() {
+  ff_ = nullptr;
+}
+
 BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml,
                                const std::string &ff_model_name)
   : mB_(mB), mD_(mD), ml_(ml) {
@@ -41,13 +45,17 @@ BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml,
 }
 
 BPlnuDecayRate::BPlnuDecayRate(const BPlnuDecayRate &rhs) {
+  mB_ = rhs.mB_; mD_ = rhs.mD_; ml_ = rhs.ml_;
   ff_ = rhs.ff_->clone();
+  norm_ = rhs.norm_;
 }
 
 BPlnuDecayRate& BPlnuDecayRate::operator=(const BPlnuDecayRate &rhs) {
   if (this != &rhs) {
     cleanup();
+    mB_ = rhs.mB_; mD_ = rhs.mD_; ml_ = rhs.ml_;
     ff_ = rhs.ff_->clone();
+    norm_ = rhs.norm_;
   }
   return *this;
 }

@@ -51,6 +51,17 @@ inline bool is_bmeson(int lund) {
   return (abslund == B0Lund || abslund == BpLund) ? true : false; 
 }
 
+inline bool is_chargedB(int lund) { return abs(lund) == BpLund ? true : false ; }
+inline bool is_neutralB(int lund) { return abs(lund) == B0Lund ? true : false ; }
+inline bool is_chargedD(int lund) { return abs(lund) == DpLund ? true : false ; }
+inline bool is_neutralD(int lund) { return abs(lund) == D0Lund ? true : false ; }
+inline bool is_chargedDstar(int lund) { return abs(lund) == DstarpLund ? true : false ; }
+inline bool is_neutralDstar(int lund) { return abs(lund) == Dstar0Lund ? true : false ; }
+
+inline bool is_positive_lepton(int lund) { 
+  return (lund == eLund || lund == muLund || lund == tauLund) ? true : false;
+}
+
 inline bool is_dstar(int lund) {
   int abslund = abs(lund);
   return (abslund == DstarpLund || abslund == Dstar0Lund) ? true : false; 

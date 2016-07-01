@@ -12,7 +12,9 @@ class BPlnuDecayRate {
 
   public:
 
+
     // supported ff_model_name: "ISGW2", "CLN"
+    BPlnuDecayRate();
     BPlnuDecayRate(double mB, double mD, double ml, 
                    const std::string &ff_model_name);
     BPlnuDecayRate(const BPlnuDecayRate&);

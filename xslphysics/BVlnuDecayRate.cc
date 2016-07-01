@@ -18,6 +18,10 @@ inline double compute_coupling_size() {
 
 }
 
+BVlnuDecayRate::BVlnuDecayRate() {
+  ff_ = nullptr;
+}
+
 BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml, 
     bool isDgamma, bool islplus, const std::string &ff_model_name)
   : mB_(mB), mDs_(mDs), ml_(ml), isDgamma_(isDgamma), islplus_(islplus) {
@@ -46,12 +50,24 @@ BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml,
 }
 
 BVlnuDecayRate::BVlnuDecayRate(const BVlnuDecayRate &rhs) {
+  mB_ = rhs.mB_; 
+  mDs_ = rhs.mDs_; 
+  ml_ = rhs.ml_; 
+  isDgamma_ = rhs.isDgamma_; 
+  islplus_ = rhs.islplus_; 
+  norm_ = rhs.norm_; 
   ff_ = rhs.ff_->clone();
 }
 
 BVlnuDecayRate& BVlnuDecayRate::operator=(const BVlnuDecayRate &rhs) {
   if (this != &rhs) {
     cleanup();
+    mB_ = rhs.mB_; 
+    mDs_ = rhs.mDs_; 
+    ml_ = rhs.ml_; 
+    isDgamma_ = rhs.isDgamma_; 
+    islplus_ = rhs.islplus_; 
+    norm_ = rhs.norm_; 
     ff_ = rhs.ff_->clone();
   }
   return *this;

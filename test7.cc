@@ -82,6 +82,8 @@ int main() {
     curator.curate(g, summary);
     analyzer.analyze(g, summary);
 
+    std::cout << analyzer.cln_weight() << std::endl;
+
     for (const auto &sl : analyzer.bdslnu()) {
       if (is_e(sl.Leplund())) {
         fout << sl.q2() << " ";
