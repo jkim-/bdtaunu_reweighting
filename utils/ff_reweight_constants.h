@@ -133,4 +133,8 @@ inline bool is_Dss0(int lund) {
   return (abslund == D0sspLund || abslund == D0ss0Lund) ? true : false;
 }
 
+inline bool is_dsstar(int lund) {
+  return is_D1(lund) || is_D2(lund) || is_D1prime(lund) || is_Dss0(lund);
+}
+
 #endif

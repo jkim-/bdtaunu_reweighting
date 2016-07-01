@@ -22,6 +22,7 @@ class BD1lnuDecayRate {
     double wmin() const { return w(q2max()); }
     double wmax() const { return w(q2min()); }
 
+    double dGamma_dq2_density(double q2) const;
     double dGamma_dw(double w) const;
     double dGamma_dw_density(double w) const;
 
@@ -45,6 +46,10 @@ class BD1lnuDecayRate {
     BD1FF *ff_;
 };
 
+
+inline double BD1lnuDecayRate::dGamma_dq2_density(double q2) const {
+  return dGamma_dw_aux(w(q2)) / norm_;
+}
 
 inline double BD1lnuDecayRate::dGamma_dw_density(double w) const {
   return dGamma_dw_aux(w) / norm_;

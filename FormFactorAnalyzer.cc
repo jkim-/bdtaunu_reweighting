@@ -10,9 +10,11 @@ FormFactorAnalyzer::FormFactorAnalyzer()
 : FormFactorAnalyzer(true) {}
 
 FormFactorAnalyzer::FormFactorAnalyzer(bool ignore_fsr) : 
-  bsl_dict_(), cln_reweighter_(), 
+  bsl_dict_(), 
+  cln_reweighter_(), 
+  llsw_reweighter_(), 
   ignore_fsr_(ignore_fsr), 
-  bdlnu_(), bdslnu_() {
+  bdlnu_(), bdslnu_(), bdsslnu_() {
   clear_cache();
 }
 
@@ -21,7 +23,10 @@ FormFactorAnalyzer::~FormFactorAnalyzer() {}
 void FormFactorAnalyzer::clear_cache() {
   bdlnu_.clear();
   bdslnu_.clear();
+  bdsslnu_.clear();
   cln_ = 1.0;
+  llswb1_ = 1.0;
+  llswb2_ = 1.0;
 }
 
 void FormFactorAnalyzer::decay_lunds_from_vertices(
@@ -115,6 +120,35 @@ BToDslnuMode FormFactorAnalyzer::create_bdslnu_mode(
                         BLab, XLab, LepLab, XdauLab });
 }
 
+BToDsslnuMode FormFactorAnalyzer::create_bdsslnu_mode(
+    Vertex mother_vertex,
+    const std::vector<Vertex> &daughter_vertices) {
+
+  int Blund, Xlund, Leplund;
+  Blund = Xlund = Leplund = 0;
+  HepLorentzVector BLab, XLab, LepLab, NuLab;
+
+  Blund = lund_pm_[mother_vertex];
+  BLab = lorentz_pm_[mother_vertex];
+
+  for (const auto & v : daughter_vertices) {
+    int lund = lund_pm_[v];
+    if (is_dsstar(lund)) {
+      Xlund = lund;
+      XLab = lorentz_pm_[v];
+    } else if (is_lepton(lund)) {
+      Leplund = lund;
+      LepLab = lorentz_pm_[v];
+    } else if (is_neutrino(lund)) {
+      NuLab = lorentz_pm_[v];
+    }
+  }
+
+  if (ignore_fsr_) { LepLab = BLab - XLab - NuLab; }
+
+  return BToDsslnuMode({ Blund, Xlund, Leplund, BLab, XLab, LepLab });
+}
+
 void FormFactorAnalyzer::collect_decay_modes(
     const Graph &g, const McDecayModeSummary &summary) {
 
@@ -137,6 +171,9 @@ void FormFactorAnalyzer::collect_decay_modes(
       case BSemiLepCode::B_Ds_l:
         bdslnu_.push_back(create_bdslnu_mode(it->first, it->second, summary));
         break;
+      case BSemiLepCode::B_Dss_l:
+        bdsslnu_.push_back(create_bdsslnu_mode(it->first, it->second));
+        break;
       default:
         ;
     }
@@ -146,6 +183,8 @@ void FormFactorAnalyzer::collect_decay_modes(
 void FormFactorAnalyzer::compute_ff_weights() {
 
   cln_ = 1.0;
+  llswb1_ = 1.0;
+  llswb2_ = 1.0;
 
   for (const auto &m : bdlnu_) {
     cln_ *= cln_reweighter_.compute_bdlnu_cln_weights(m, m.q2());
@@ -154,6 +193,11 @@ void FormFactorAnalyzer::compute_ff_weights() {
   for (const auto &m : bdslnu_) {
     cln_ *= cln_reweighter_.compute_bdslnu_cln_weights(
         m, m.q2(), m.ctl(), m.ctv(), m.chi());
+  }
+
+  for (const auto &m : bdsslnu_) {
+    llswb1_ *= llsw_reweighter_.compute_bdsslnu_llswb1_weights(m, m.q2());
+    llswb2_ *= llsw_reweighter_.compute_bdsslnu_llswb2_weights(m, m.q2());
   }
 
 }

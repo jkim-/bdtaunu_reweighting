@@ -7,7 +7,8 @@ BINARIES = test7
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
 					BToDlnuMode.o BToDslnuMode.o BToDsslnuMode.o \
 					BSemiLepDict.o \
-					CLNReweighter.o FormFactorAnalyzer.o
+					CLNReweighter.o LLSWReweighter.o \
+					FormFactorAnalyzer.o
 
 # external dependencies
 # ---------------------
