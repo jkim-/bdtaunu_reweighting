@@ -16,11 +16,11 @@ LIBNAME = libxslphysics.so
 # external dependencies
 # ---------------------
 
-FF_REWEIGHT_ROOT = /Users/dchao/workspace/bdtaunu_reweighting
+FF_REWEIGHT_ROOT = /home/dchao/workspace/bdtaunu_reweighting
 UTILS_INCDIR = $(FF_REWEIGHT_ROOT)/utils
 UTILS_LIBDIR = $(FF_REWEIGHT_ROOT)/utils
 
-CLHEP_ROOT = /usr/local
+CLHEP_ROOT = /usr/local/CLHEP_2.3.3.1
 CLHEP_INCDIR = $(CLHEP_ROOT)/include
 CLHEP_LIBDIR = $(CLHEP_ROOT)/lib
 

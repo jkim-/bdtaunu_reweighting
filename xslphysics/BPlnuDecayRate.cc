@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <stdexcept>
 
 #include <ff_reweight_constants.h>
 #include <gauss_legendre.h>
