@@ -113,4 +113,24 @@ inline bool is_e(int lund) { return abs(lund) == eLund; }
 inline bool is_mu(int lund) { return abs(lund) == muLund; }
 inline bool is_tau(int lund) { return abs(lund) == tauLund; }
 
+inline bool is_D1(int lund) {
+  int abslund = abs(lund);
+  return (abslund == D1pLund || abslund == D10Lund) ? true : false;
+}
+
+inline bool is_D2(int lund) {
+  int abslund = abs(lund);
+  return (abslund == D2pLund || abslund == D20Lund) ? true : false;
+}
+
+inline bool is_D1prime(int lund) {
+  int abslund = abs(lund);
+  return (abslund == D1primepLund || abslund == D1prime0Lund) ? true : false;
+}
+
+inline bool is_Dss0(int lund) {
+  int abslund = abs(lund);
+  return (abslund == D0sspLund || abslund == D0ss0Lund) ? true : false;
+}
+
 #endif
