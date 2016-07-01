@@ -6,6 +6,9 @@
 #include "BDss0FF.h"
 #include "BDss0lnuDecayRate.h"
 
+BDss0lnuDecayRate::BDss0lnuDecayRate() { 
+  ff_ = nullptr;
+}
 
 BDss0lnuDecayRate::BDss0lnuDecayRate(double mB, double mDss, double ml,
                                const std::string &ff_model_name)

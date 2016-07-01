@@ -7,6 +7,10 @@
 #include "BD2lnuDecayRate.h"
 
 
+BD2lnuDecayRate::BD2lnuDecayRate() {
+  ff_ = nullptr;
+}
+
 BD2lnuDecayRate::BD2lnuDecayRate(double mB, double mDss, double ml,
                                const std::string &ff_model_name)
   : mB_(mB), mDss_(mDss), ml_(ml) {

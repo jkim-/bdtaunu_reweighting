@@ -6,6 +6,9 @@
 #include "BD1primeFF.h"
 #include "BD1primelnuDecayRate.h"
 
+BD1primelnuDecayRate::BD1primelnuDecayRate() {
+  ff_ = nullptr;
+}
 
 BD1primelnuDecayRate::BD1primelnuDecayRate(double mB, double mDss, double ml,
                                const std::string &ff_model_name)

@@ -12,6 +12,7 @@ class BDss0lnuDecayRate {
   friend double dGamma_dw_adapter<BDss0lnuDecayRate>(double, void*);
 
   public:
+    BDss0lnuDecayRate();
     BDss0lnuDecayRate(double mB, double mDss, double ml, 
                      const std::string &ff_model_name);
     BDss0lnuDecayRate(const BDss0lnuDecayRate&);
@@ -43,8 +44,9 @@ class BDss0lnuDecayRate {
     double mDss_;
     double ml_;
 
-    BDss0FF *ff_;
     double norm_;
+
+    BDss0FF *ff_;
 };
 
 
