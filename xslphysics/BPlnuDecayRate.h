@@ -45,8 +45,9 @@ class BPlnuDecayRate {
     double mD_;
     double ml_;
 
-    PseudoscalarFF *ff_;
     double norm_;
+
+    PseudoscalarFF *ff_;
 };
 
 inline double BPlnuDecayRate::compute_non_angular(double q2, double pW) const {

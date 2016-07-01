@@ -6,7 +6,7 @@ BINARIES = test7
 # objects to package into the shared library
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
 					BToDlnuMode.o BToDslnuMode.o BSemiLepDict.o \
-					FormFactorAnalyzer.o
+					CLNReweighter.o FormFactorAnalyzer.o
 
 # external dependencies
 # ---------------------
