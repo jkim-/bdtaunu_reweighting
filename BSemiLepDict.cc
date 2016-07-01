@@ -28,64 +28,34 @@ BSemiLepCode BSemiLepDict::find(
 void BSemiLepDict::PopulateBSLDict() {
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::D0, Symbol::e, Symbol::nu,
+      Symbol::B, Symbol::D, Symbol::e, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_D0_e);
+    }, BSemiLepCode::B_D_e);
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::D0, Symbol::mu, Symbol::nu,
+      Symbol::B, Symbol::D, Symbol::mu, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_D0_mu);
+    }, BSemiLepCode::B_D_mu);
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::D0, Symbol::tau, Symbol::nu,
+      Symbol::B, Symbol::D, Symbol::tau, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_D0_tau);
+    }, BSemiLepCode::B_D_tau);
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::Dstar0, Symbol::e, Symbol::nu,
+      Symbol::B, Symbol::Ds, Symbol::e, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_Dstar0_e);
+    }, BSemiLepCode::B_Ds_e);
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::Dstar0, Symbol::mu, Symbol::nu,
+      Symbol::B, Symbol::Ds, Symbol::mu, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_Dstar0_mu);
+    }, BSemiLepCode::B_Ds_mu);
 
   bsl_dict_.insert({
-      Symbol::Bc, Symbol::Dstar0, Symbol::tau, Symbol::nu,
+      Symbol::B, Symbol::Ds, Symbol::tau, Symbol::nu,
       Symbol::null
-    }, BSemiLepCode::Bc_Dstar0_tau);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dc, Symbol::e, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dc_e);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dc, Symbol::mu, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dc_mu);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dc, Symbol::tau, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dc_tau);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dstarc, Symbol::e, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dstarc_e);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dstarc, Symbol::mu, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dstarc_mu);
-
-  bsl_dict_.insert({
-      Symbol::B0, Symbol::Dstarc, Symbol::tau, Symbol::nu,
-      Symbol::null
-    }, BSemiLepCode::B0_Dstarc_tau);
+    }, BSemiLepCode::B_Ds_tau);
 
 }
 
@@ -94,17 +64,14 @@ BSemiLepDict::Symbol
 BSemiLepDict::LundToSymbol(int lund) const {
   switch (abs(lund)) {
     case BpLund:
-      return Symbol::Bc;
     case B0Lund:
-      return Symbol::B0;
+      return Symbol::B;
     case DstarpLund:
-      return Symbol::Dstarc;
     case Dstar0Lund:
-      return Symbol::Dstar0;
+      return Symbol::Ds;
     case DpLund:
-      return Symbol::Dc;
     case D0Lund:
-      return Symbol::D0;
+      return Symbol::D;
     case eLund:
       return Symbol::e;
     case muLund:

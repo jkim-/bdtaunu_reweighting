@@ -131,20 +131,14 @@ void FormFactorAnalyzer::collect_decay_modes(
 
     // create and append the appropriate decay mode object
     switch (sl_code) {
-      case BSemiLepCode::Bc_D0_e:
-      case BSemiLepCode::Bc_D0_mu:
-      case BSemiLepCode::Bc_D0_tau:
-      case BSemiLepCode::B0_Dc_e:
-      case BSemiLepCode::B0_Dc_mu:
-      case BSemiLepCode::B0_Dc_tau:
+      case BSemiLepCode::B_D_e:
+      case BSemiLepCode::B_D_mu:
+      case BSemiLepCode::B_D_tau:
         bdlnu_.push_back(create_bdlnu_mode(it->first, it->second));
         break;
-      case BSemiLepCode::Bc_Dstar0_e:
-      case BSemiLepCode::Bc_Dstar0_mu:
-      case BSemiLepCode::Bc_Dstar0_tau:
-      case BSemiLepCode::B0_Dstarc_e:
-      case BSemiLepCode::B0_Dstarc_mu:
-      case BSemiLepCode::B0_Dstarc_tau:
+      case BSemiLepCode::B_Ds_e:
+      case BSemiLepCode::B_Ds_mu:
+      case BSemiLepCode::B_Ds_tau:
         bdslnu_.push_back(create_bdslnu_mode(it->first, it->second, summary));
         break;
       default:

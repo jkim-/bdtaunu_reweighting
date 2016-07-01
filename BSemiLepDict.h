@@ -6,18 +6,12 @@
 #include <trie.h>
 
 enum class BSemiLepCode {
-  Bc_D0_e = 1,
-  Bc_D0_mu = 2,
-  Bc_D0_tau = 3,
-  Bc_Dstar0_e = 4,
-  Bc_Dstar0_mu = 5,
-  Bc_Dstar0_tau = 6,
-  B0_Dc_e = 7,
-  B0_Dc_mu = 8,
-  B0_Dc_tau = 9,
-  B0_Dstarc_e = 10,
-  B0_Dstarc_mu = 11,
-  B0_Dstarc_tau = 12,
+  B_D_e = 1,
+  B_D_mu = 2,
+  B_D_tau = 3,
+  B_Ds_e = 4,
+  B_Ds_mu = 5,
+  B_Ds_tau = 6,
   null = -1,
 };
 
@@ -33,8 +27,7 @@ class BSemiLepDict {
   private:
 
     enum class Symbol {
-      Bc, B0, Dstarc, Dstar0, Dc, D0, 
-      e, mu, tau, nu, gamma, other, null = -1,
+      B, Ds, D, e, mu, tau, nu, gamma, other, null = -1,
     };
 
     Symbol LundToSymbol(int lund) const;
