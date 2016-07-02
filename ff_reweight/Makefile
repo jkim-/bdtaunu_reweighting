@@ -13,22 +13,22 @@ OBJECTS = McDecayGraph.o McDecayModeCurator.o \
 # external dependencies
 # ---------------------
 
-FF_REWEIGHT_ROOT = /Users/dchao/workspace/bdtaunu_reweighting
+FF_REWEIGHT_ROOT = /home/dchao/workspace/bdtaunu_reweighting
 UTILS_INCDIR = $(FF_REWEIGHT_ROOT)/utils
 UTILS_LIBDIR = $(FF_REWEIGHT_ROOT)/utils
 XSLPHYSICS_INCDIR = $(FF_REWEIGHT_ROOT)/xslphysics
 XSLPHYSICS_LIBDIR = $(FF_REWEIGHT_ROOT)/xslphysics
 
-CLHEP_ROOT = /usr/local
+CLHEP_ROOT = /usr/local/CLHEP_2.3.3.1
 CLHEP_INCDIR = $(CLHEP_ROOT)/include
 CLHEP_LIBDIR = $(CLHEP_ROOT)/lib
 
-BOOST_ROOT = /usr/local/boost_1_56_0
+BOOST_ROOT = /usr/local/boost_1_59_0
 BOOST_INCDIR = $(BOOST_ROOT)
 BOOST_LIBDIR = $(BOOST_ROOT)/stage/lib
 BOOST_LIBS = -lboost_program_options -lboost_regex
 
-LIBPQ_ROOT = /usr/local/pgsql
+LIBPQ_ROOT = /usr/pgsql-9.4
 LIBPQ_INCDIR = $(LIBPQ_ROOT)/include
 LIBPQ_LIBDIR = $(LIBPQ_ROOT)/lib
 
