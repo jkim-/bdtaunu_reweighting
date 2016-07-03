@@ -1,7 +1,7 @@
 # directory configuration
 # -----------------------
 
-BINARIES = test7
+BINARIES = ff_reweight
 
 # objects to package into the shared library
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
@@ -58,6 +58,9 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
 all : $(BINARIES)
+
+ff_reweight : $(addprefix $(BUILDDIR)/, ff_reweight.o $(OBJECTS))
+	$(CXX) $(LDFLAGS) $^ -o $@
 
 test% : $(addprefix $(BUILDDIR)/, test%.o $(OBJECTS))
 	$(CXX) $(LDFLAGS) $^ -o $@

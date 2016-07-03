@@ -40,12 +40,20 @@ BD1lnuDecayRate::BD1lnuDecayRate(double mB, double mDss, double ml,
 }
 
 BD1lnuDecayRate::BD1lnuDecayRate(const BD1lnuDecayRate &rhs) {
+  mB_ = rhs.mB_;
+  mDss_ = rhs.mDss_;
+  ml_ = rhs.ml_;
+  norm_ = rhs.norm_;
   ff_ = rhs.ff_->clone();
 }
 
 BD1lnuDecayRate& BD1lnuDecayRate::operator=(const BD1lnuDecayRate &rhs) {
   if (this != &rhs) {
     cleanup();
+    mB_ = rhs.mB_;
+    mDss_ = rhs.mDss_;
+    ml_ = rhs.ml_;
+    norm_ = rhs.norm_;
     ff_ = rhs.ff_->clone();
   }
   return *this;

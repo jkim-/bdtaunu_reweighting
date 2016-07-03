@@ -1,7 +1,9 @@
 #ifndef __BDSS0LNUDECAYRATE_H__
 #define __BDSS0LNUDECAYRATE_H__
 
+#include <cmath>
 #include <string>
+#include <iostream>
 
 #include <ff_reweight_constants.h>
 #include "xslphysics_utils.h"

@@ -1,3 +1,4 @@
+#include <cmath>
 #include <ff_reweight_constants.h>
 
 #include "CLNReweighter.h"

@@ -2,6 +2,7 @@
 #define __BD1PRIMELNUDECAYRATE_H__
 
 #include <string>
+#include <iostream>
 
 #include <ff_reweight_constants.h>
 #include "xslphysics_utils.h"
