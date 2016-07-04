@@ -19,7 +19,7 @@ if __name__ == '__main__':
     job_suffixes = [
         'sp1235',
         'sp1237',
-        'sigmc',
+        #'sigmc',
         ]
 
     executable_path = '../ff_reweight'
