@@ -28,10 +28,17 @@ void McDecayModeCurator::curate(
   }
 
   // find source vertex to start bfs (Upsilon(4S))
-  Vertex s = Vertex(); 
-  for (std::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi) {
-    if (abs(lund_pm[*vi]) == Upsilon4SLund) { s = *vi; break; } 
+  Vertex s = Vertex(); bool found_upsilon = false;
+  for (std::tie(vi, vi_end) = vertices(g); 
+       !found_upsilon && vi != vi_end; ++vi) {
+    if (abs(lund_pm[*vi]) == Upsilon4SLund) { 
+      s = *vi; found_upsilon = true;
+    } 
   }
+
+  // return if no upsilons are found. this 
+  // implicitly filters out continuum events. 
+  if (!found_upsilon) { return; }
 
   // create visitor
   McDecayModeVisitor vis(summary, lund_pm);

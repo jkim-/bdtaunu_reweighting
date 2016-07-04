@@ -23,7 +23,7 @@ int main() {
 
   // open database connection and populate fields
   std::string dbname = "bdtaunuhad_lite";
-  std::string table_name = "ff_reweight_inputs_sp1235";
+  std::string table_name = "ff_reweight_inputs_small";
   int cursor_fetch_size = 5000;
 
   PsqlReader psql;
@@ -44,7 +44,7 @@ int main() {
   std::vector<float> mcenergycm, mcp3cm, mccosthcm, mcphicm; 
 
   // open output file
-  std::ofstream fout("formfactor_weights_sp1235.csv");
+  std::ofstream fout("formfactor_weights_small.csv");
   fout << "eid,cln_weight,llswb1_weight,llswb2_weight" << std::endl;
 
   // initialize worker classes
