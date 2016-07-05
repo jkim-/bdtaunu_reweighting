@@ -14,8 +14,12 @@ constexpr int DstarpLund = 413;
 constexpr int Dstar0Lund = 423;
 constexpr int DpLund = 411;
 constexpr int D0Lund = 421;
+constexpr int KpLund = 321;
+constexpr int K0Lund = 311;
 constexpr int pi0Lund = 111;
 constexpr int pipLund = 211;
+constexpr int a1pLund = 20213;
+constexpr int rhopLund = 213;
 constexpr int eLund = 11;
 constexpr int muLund = 13;
 constexpr int tauLund = 15;
@@ -32,6 +36,10 @@ constexpr int D1primepLund = 20413;
 constexpr int D1prime0Lund = 20423;
 constexpr int D0sspLund = 10411;
 constexpr int D0ss0Lund = 10421;
+
+constexpr int DspLund = 431;
+constexpr int DsstarpLund = 433;
+constexpr int Ds1pLund = 10433;
 
 constexpr double mBp = 5.2792;
 constexpr double mB0 = 5.2795;
