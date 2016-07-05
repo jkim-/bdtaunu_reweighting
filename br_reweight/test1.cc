@@ -36,7 +36,10 @@ int main() {
   McLundGraphFactory graph_factory;
   McDecayModeCurator curator;
   McDecayModeSummary summary;
-  BrfAnalyzer analyzer;
+  BrfAnalyzer analyzer("dat/brf_corrections.dat");
+
+  std::ofstream fout("test.csv");
+  fout << "brf_correction_weight,b1_brf_mode,b2_brf_mode" << std::endl;
 
   // main loop
   while (psql.next()) {
@@ -55,8 +58,9 @@ int main() {
     curator.curate(g, summary);
     analyzer.analyze(g, summary);
 
-    std::cout << static_cast<int>(analyzer.b1_brf_mode()) << " ";
-    std::cout << static_cast<int>(analyzer.b2_brf_mode()) << std::endl;
+    fout << analyzer.brf_correction_weight() << ",";
+    fout << analyzer.b1_brf_mode_string() << ",";
+    fout << analyzer.b2_brf_mode_string() << std::endl;
 
   }
   

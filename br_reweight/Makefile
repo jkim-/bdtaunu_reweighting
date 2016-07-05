@@ -5,7 +5,7 @@ BINARIES = test1
 
 # objects to package into the shared library
 OBJECTS = McLundGraph.o McDecayModeCurator.o \
-					BrfReweightDict.o BrfAnalyzer.o
+					BrfReweightDict.o BrfCorrectionTable.o BrfAnalyzer.o
 
 # external dependencies
 # ---------------------

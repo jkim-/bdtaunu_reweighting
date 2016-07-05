@@ -2,11 +2,11 @@
 
 #include "BrfAnalyzer.h"
 
-BrfAnalyzer::BrfAnalyzer() 
-: BrfAnalyzer(true) {}
-
-BrfAnalyzer::BrfAnalyzer(bool ignore_fsr) : 
+BrfAnalyzer::BrfAnalyzer(
+    const std::string &brf_correction_fname,
+    bool ignore_fsr) : 
   ignore_fsr_(ignore_fsr), 
+  brf_correction_table_(brf_correction_fname), 
   brf_mode_dict_() {
   clear_cache();
 }
@@ -14,6 +14,7 @@ BrfAnalyzer::BrfAnalyzer(bool ignore_fsr) :
 BrfAnalyzer::~BrfAnalyzer() {}
 
 void BrfAnalyzer::clear_cache() { 
+  brf_correction_weight_ = 1.0;
   b1_brf_mode_ = BrfReweightCode::null;
   b2_brf_mode_ = BrfReweightCode::null;
   return;
@@ -52,6 +53,16 @@ void BrfAnalyzer::analyze(
   ++it; decay_lunds.clear();
   decay_lunds_from_vertices(decay_lunds, it->first, it->second);
   b2_brf_mode_ = brf_mode_dict_.find(decay_lunds, ignore_fsr_);
+
+  // compute branching fraction correction weight
+  brf_correction_weight_ = 1.0;
+  if (brf_correction_table_.is_valid_entry(b1_brf_mode_)) {
+    brf_correction_weight_ *= brf_correction_table_.brf(b1_brf_mode_);
+  }
+
+  if (brf_correction_table_.is_valid_entry(b2_brf_mode_)) {
+    brf_correction_weight_ *= brf_correction_table_.brf(b2_brf_mode_);
+  }
 
   return; 
 }
