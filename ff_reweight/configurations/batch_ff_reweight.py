@@ -19,29 +19,16 @@ if __name__ == '__main__':
     job_suffixes = [
         'sp1235',
         'sp1237',
-        #'sigmc',
         ]
 
     executable_path = '../ff_reweight'
     executable_cfg_template = 'ff_reweight_python_template.cfg'
-    prepare_sql_script_template = 'prepare_ff_reweight_inputs_sql_template.sql'
     populate_sql_script_template = 'populate_ff_weight_sql_template.sql'
 
     for suffix in job_suffixes:
 
         print "+ begin processing {0}\n".format(suffix)
         start_all = time.time()
-
-        print "  preparing inputs..."
-        sys.stdout.flush()
-
-        start = time.time()
-        temp = instantiate_tempfile(prepare_sql_script_template, suffix)
-        subprocess.check_call(["psql", "-d", dbname, "-f", temp.name])
-        end = time.time()
-
-        print "  completed in {0} seconds. \n".format(round(end-start, 2))
-        sys.stdout.flush()
 
         print "  computing form factor weights..."
         sys.stdout.flush()
