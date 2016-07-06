@@ -22,6 +22,8 @@ class BD1primelnuDecayRate {
 
     double wmin() const { return w(q2max()); }
     double wmax() const { return w(q2min()); }
+    double q2min() const { return ml_*ml_; }
+    double q2max() const { return (mB_-mDss_)*(mB_-mDss_); }
 
     double dGamma_dq2_density(double q2) const;
     double dGamma_dw(double w) const;
@@ -30,8 +32,6 @@ class BD1primelnuDecayRate {
   private:
     void cleanup();
 
-    double q2min() const { return ml_*ml_; }
-    double q2max() const { return (mB_-mDss_)*(mB_-mDss_); }
     double w(double q2) const { return (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_); }
     double q2(double w) const { return (mB_*mB_+mDss_*mDss_-2*mB_*mDss_*w); }
 
