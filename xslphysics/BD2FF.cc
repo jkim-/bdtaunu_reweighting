@@ -38,11 +38,17 @@ BD2FF* ISGW2BD2FF::clone() {
   return new ISGW2BD2FF(mB_, mDss_);
 }
 
+
 void ISGW2BD2FF::compute_ff(double q2, 
+    double &kV, double &kA1, double &kA3rkA2) const {
+  compute_ff(q2, mDss_, kV, kA1, kA3rkA2);
+}
+
+void ISGW2BD2FF::compute_ff(double q2, double mDss,
     double &kV, double &kA1, double &kA3rkA2) const {
 
   double mB = mB_;
-  double mD = mDss_;
+  double mD = mDss;
 
   // Get R
   double mcR = 2.0*sqrt(mB*mD) / (mB+mD);
@@ -130,14 +136,18 @@ BD2FF* LLSWBD2FF::clone() {
   return new LLSWBD2FF(mB_, mDss_, isApproxB1_, tau_1_);
 }
 
+void LLSWBD2FF::compute_ff(double q2,
+    double &kV, double &kA1, double &kA3rkA2) const {
+  compute_ff(q2, mDss_, kV, kA1, kA3rkA2);
+}
 
-void LLSWBD2FF::compute_ff(double q2, 
+void LLSWBD2FF::compute_ff(double q2, double mDss,
     double &kV, double &kA1, double &kA3rkA2) const {
  
-  double trueW = (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_);
+  double trueW = (mB_*mB_+mDss*mDss-q2)/(2*mB_*mDss);
   double tau_1_org = tau_1_org_;
   double mB = mB_;
-  double mD = mDss_;
+  double mD = mDss;
 
   double tau_p = tau_1_;
 

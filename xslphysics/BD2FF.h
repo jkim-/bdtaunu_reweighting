@@ -19,6 +19,8 @@ class ISGW2BD2FF : public BD2FF {
     BD2FF* clone();
     void compute_ff(double q2, 
         double &kV, double &kA1, double &kA3rkA2) const;
+    void compute_ff(double q2, double mDss,
+        double &kV, double &kA1, double &kA3rkA2) const;
 
   private:
     double mB_;
@@ -32,6 +34,8 @@ class LLSWBD2FF : public BD2FF {
     ~LLSWBD2FF();
     BD2FF* clone();
     void compute_ff(double q2, 
+        double &kV, double &kA1, double &kA3rkA2) const;
+    void compute_ff(double q2, double mDss,
         double &kV, double &kA1, double &kA3rkA2) const;
 
   private:

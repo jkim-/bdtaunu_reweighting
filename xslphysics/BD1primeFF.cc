@@ -38,11 +38,17 @@ BD1primeFF* ISGW2BD1primeFF::clone() {
   return new ISGW2BD1primeFF(mB_, mDss_);
 }
 
+
 void ISGW2BD1primeFF::compute_ff(double q2, 
+    double &gA, double &gV1, double &gV3rgV2) const {
+  compute_ff(q2, mDss_, gA, gV1, gV3rgV2);
+}
+
+void ISGW2BD1primeFF::compute_ff(double q2, double mDss,
     double &gA, double &gV1, double &gV3rgV2) const {
   
   double mB = mB_;
-  double mD = mDss_;
+  double mD = mDss;
 
   // Get R
   double mcR = 2.0*sqrt(mB*mD) / (mB+mD);
@@ -146,11 +152,16 @@ BD1primeFF* LLSWBD1primeFF::clone() {
 
 void LLSWBD1primeFF::compute_ff(double q2, 
     double &gA, double &gV1, double &gV3rgV2) const {
+  compute_ff(q2, mDss_, gA, gV1, gV3rgV2);
+}
+
+void LLSWBD1primeFF::compute_ff(double q2, double mDss, 
+    double &gA, double &gV1, double &gV3rgV2) const {
  
-  double trueW = (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_);
+  double trueW = (mB_*mB_+mDss*mDss-q2)/(2*mB_*mDss);
   double tau_1_org = tau_1_org_;
   double mB = mB_;
-  double mD = mDss_;
+  double mD = mDss;
 
   double tau_p = tau_1_;
 
