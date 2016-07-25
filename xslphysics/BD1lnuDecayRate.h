@@ -27,6 +27,8 @@ class BD1lnuDecayRate {
     double q2max(double mDss) const { return (mB_-mDss)*(mB_-mDss); }
     double q2max() const { return q2max(mDss_); }
 
+    double normalization() const { return norm_; }
+
     double dGamma_dw_unnormed(double w, double mDss) const;
     double dGamma_dw_unnormed(double w) const;
 
