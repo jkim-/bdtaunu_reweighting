@@ -10,6 +10,8 @@ class BD1primeFF {
     virtual BD1primeFF* clone() = 0;
     virtual void compute_ff(double q2, 
         double &gA, double &gV1, double &gV3rgV2) const = 0;
+    virtual void compute_ff(double q2, double mDss, 
+        double &gA, double &gV1, double &gV3rgV2) const = 0;
 };
 
 class ISGW2BD1primeFF : public BD1primeFF {
