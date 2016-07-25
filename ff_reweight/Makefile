@@ -1,7 +1,7 @@
 # directory configuration
 # -----------------------
 
-BINARIES = gather_spectra trace_ff_models ff_reweight
+BINARIES = gather_Dss_mass gather_spectra trace_ff_models ff_reweight
 
 # objects to package into the shared library
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
@@ -46,8 +46,7 @@ LDFLAGS += -L$(UTILS_LIBDIR) -L$(XSLPHYSICS_LIBDIR) -L$(CLHEP_LIBDIR) \
 # -----------
 
 CXX := g++
-CXXFLAGS = -Wall -fPIC -pedantic -pthread -std=c++11 -O2 \
-					 -Wno-unused-local-typedef -Wno-redeclared-class-member
+CXXFLAGS = -Wall -fPIC -pedantic -pthread -std=c++11 -O2 #-Wno-unused-local-typedef -Wno-redeclared-class-member
 
 SRCS = $(wildcard *.cc)
 BUILDDIR = build
@@ -66,6 +65,9 @@ gather_spectra : $(addprefix $(BUILDDIR)/, gather_spectra.o $(OBJECTS))
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 trace_ff_models : $(addprefix $(BUILDDIR)/, trace_ff_models.o $(OBJECTS))
+	$(CXX) $(LDFLAGS) $^ -o $@
+
+gather_Dss_mass : $(addprefix $(BUILDDIR)/, gather_Dss_mass.o $(OBJECTS))
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 test% : $(addprefix $(BUILDDIR)/, test%.o $(OBJECTS))

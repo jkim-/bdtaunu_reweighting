@@ -24,3 +24,10 @@ CREATE INDEX ON ff_reweight_inputs_small_sp1237 (eid);
 COMMIT;
 
 VACUUM ANALYZE ff_reweight_inputs_small_sp1237;
+
+-- union them 
+CREATE VIEW ff_reweight_inputs_small AS 
+SELECT * FROM ff_reweight_inputs_small_sp1235 
+UNION ALL
+SELECT * FROM ff_reweight_inputs_small_sp1237;
+
