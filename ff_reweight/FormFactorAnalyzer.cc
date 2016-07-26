@@ -187,17 +187,16 @@ void FormFactorAnalyzer::compute_ff_weights() {
   llswb2_ = 1.0;
 
   for (const auto &m : bdlnu_) {
-    cln_ *= cln_reweighter_.compute_bdlnu_cln_weights(m, m.q2());
+    cln_ *= cln_reweighter_.compute_bdlnu_cln_weights(m);
   }
 
   for (const auto &m : bdslnu_) {
-    cln_ *= cln_reweighter_.compute_bdslnu_cln_weights(
-        m, m.q2(), m.ctl(), m.ctv(), m.chi());
+    cln_ *= cln_reweighter_.compute_bdslnu_cln_weights(m);
   }
 
   for (const auto &m : bdsslnu_) {
-    llswb1_ *= llsw_reweighter_.compute_bdsslnu_llswb1_weights(m, m.q2());
-    llswb2_ *= llsw_reweighter_.compute_bdsslnu_llswb2_weights(m, m.q2());
+    llswb1_ *= llsw_reweighter_.compute_bdsslnu_llswb1_weights(m);
+    llswb2_ *= llsw_reweighter_.compute_bdsslnu_llswb2_weights(m);
   }
 
 }

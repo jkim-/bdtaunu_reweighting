@@ -57,7 +57,7 @@ class BToDsslnuMode {
 
     const CLHEP::HepLorentzVector &BLab() const { return kin_.BLab(); }
     const CLHEP::HepLorentzVector &XLab() const { return kin_.XLab(); }
-    const CLHEP::HepLorentzVector &LepLab() const { return kin_.LepB(); }
+    const CLHEP::HepLorentzVector &LepLab() const { return kin_.LepLab(); }
     const CLHEP::HepLorentzVector &LepB() const { return kin_.LepB(); }
 
     virtual ~BToDsslnuMode() {};
