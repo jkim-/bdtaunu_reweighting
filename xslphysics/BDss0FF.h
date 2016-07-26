@@ -9,7 +9,6 @@ class BDss0FF {
     virtual ~BDss0FF() {};
     virtual BDss0FF* clone() = 0;
     virtual void compute_ff(double q2, double &gp, double &gm) const = 0;
-    virtual void compute_ff(double q2, double mDss, double &gp, double &gm) const = 0;
 };
 
 class ISGW2BDss0FF : public BDss0FF {
@@ -18,7 +17,6 @@ class ISGW2BDss0FF : public BDss0FF {
     ~ISGW2BDss0FF();
     BDss0FF* clone();
     void compute_ff(double q2, double &gp, double &gm) const;
-    void compute_ff(double q2, double mDss, double &gp, double &gm) const;
 
   private:
     double mB_;
@@ -31,7 +29,6 @@ class LLSWBDss0FF : public BDss0FF {
     ~LLSWBDss0FF();
     BDss0FF* clone();
     void compute_ff(double q2, double &gp, double &gm) const;
-    void compute_ff(double q2, double mDss, double &gp, double &gm) const;
 
   private:
     double mB_;

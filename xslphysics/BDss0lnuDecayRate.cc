@@ -67,12 +67,12 @@ BDss0lnuDecayRate::~BDss0lnuDecayRate() {
   cleanup();
 }
 
-double BDss0lnuDecayRate::dGamma_dw_unnormed(double w, double mDss) const {
+double BDss0lnuDecayRate::dGamma_dw_aux(double w) const {
 
   double gp, gm; 
-  ff_->compute_ff(q2(w, mDss), mDss, gp, gm);
+  ff_->compute_ff(q2(w), gp, gm);
 
-  double r = mDss / mB_;
+  double r = mDss_ / mB_;
 
   double result = (1+r)*gp-(1-r)*gm; 
   result *= result;

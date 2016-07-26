@@ -38,15 +38,10 @@ BDss0FF* ISGW2BDss0FF::clone() {
   return new ISGW2BDss0FF(mB_, mDss_);
 }
 
-
 void ISGW2BDss0FF::compute_ff(double q2, double &gp, double &gm) const {
-  compute_ff(q2, mDss_, gp , gm);
-}
-
-void ISGW2BDss0FF::compute_ff(double q2, double mDss, double &gp, double &gm) const {
 
   double mB = mB_;
-  double mD = mDss;
+  double mD = mDss_;
 
 
   // Get R
@@ -132,12 +127,9 @@ BDss0FF* LLSWBDss0FF::clone() {
 
 
 void LLSWBDss0FF::compute_ff(double q2, double &gp, double &gm) const {
-  compute_ff(q2, mDss_, gp, gm);
-}
 
-void LLSWBDss0FF::compute_ff(double q2, double mDss, double &gp, double &gm) const {
-
-  double trueW = (mB_*mB_+mDss*mDss-q2)/(2*mB_*mDss);
+ 
+  double trueW = (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_);
   double tau_1_org = tau_1_org_;
 
   double tau_p = tau_1_;

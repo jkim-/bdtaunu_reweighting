@@ -10,8 +10,6 @@ class BD1FF {
     virtual BD1FF* clone() = 0;
     virtual void compute_ff(double q2, 
         double &fA, double &fV1, double &fV3rfV2) const = 0;
-    virtual void compute_ff(double q2, double mDss,
-        double &fA, double &fV1, double &fV3rfV2) const = 0;
 };
 
 class ISGW2BD1FF : public BD1FF {
@@ -20,8 +18,6 @@ class ISGW2BD1FF : public BD1FF {
     ~ISGW2BD1FF();
     BD1FF* clone();
     void compute_ff(double q2, 
-        double &fA, double &fV1, double &fV3rfV2) const;
-    void compute_ff(double q2, double mDss,
         double &fA, double &fV1, double &fV3rfV2) const;
 
   private:
@@ -36,8 +32,6 @@ class LLSWBD1FF : public BD1FF {
     ~LLSWBD1FF();
     BD1FF* clone();
     void compute_ff(double q2, 
-        double &fA, double &fV1, double &fV3rfV2) const;
-    void compute_ff(double q2, double mDss, 
         double &fA, double &fV1, double &fV3rfV2) const;
 
   private:

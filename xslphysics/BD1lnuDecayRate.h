@@ -19,18 +19,10 @@ class BD1lnuDecayRate {
     BD1lnuDecayRate& operator=(const BD1lnuDecayRate&);
     ~BD1lnuDecayRate();
 
-    double wmin(double mDss) const { return w(q2max(mDss)); }
     double wmin() const { return w(q2max()); }
     double wmax() const { return w(q2min()); }
-
     double q2min() const { return ml_*ml_; }
-    double q2max(double mDss) const { return (mB_-mDss)*(mB_-mDss); }
-    double q2max() const { return q2max(mDss_); }
-
-    double normalization() const { return norm_; }
-
-    double dGamma_dw_unnormed(double w, double mDss) const;
-    double dGamma_dw_unnormed(double w) const;
+    double q2max() const { return (mB_-mDss_)*(mB_-mDss_); }
 
     double dGamma_dq2_density(double q2) const;
     double dGamma_dw(double w) const;
@@ -39,10 +31,10 @@ class BD1lnuDecayRate {
   private:
     void cleanup();
 
-    double w(double q2, double mDss) const { return (mB_*mB_+mDss*mDss-q2)/(2*mB_*mDss); }
-    double w(double q2) const { return w(q2, mDss_); }
-    double q2(double w, double mDss) const { return (mB_*mB_+mDss*mDss-2*mB_*mDss*w); }
-    double q2(double w) const { return q2(w, mDss_); }
+    double w(double q2) const { return (mB_*mB_+mDss_*mDss_-q2)/(2*mB_*mDss_); }
+    double q2(double w) const { return (mB_*mB_+mDss_*mDss_-2*mB_*mDss_*w); }
+
+    double dGamma_dw_aux(double w) const;
 
   private:
     double mB_;
@@ -55,20 +47,16 @@ class BD1lnuDecayRate {
 };
 
 
-inline double BD1lnuDecayRate::dGamma_dw_unnormed(double w) const {
-  return dGamma_dw_unnormed(w, mDss_);
-}
-
 inline double BD1lnuDecayRate::dGamma_dq2_density(double q2) const {
-  return dGamma_dw_unnormed(w(q2)) / norm_;
+  return dGamma_dw_aux(w(q2)) / norm_;
 }
 
 inline double BD1lnuDecayRate::dGamma_dw_density(double w) const {
-  return dGamma_dw_unnormed(w) / norm_;
+  return dGamma_dw_aux(w) / norm_;
 }
 
 inline double BD1lnuDecayRate::dGamma_dw(double w) const {
-  return GF*GF*Vcb*Vcb*pow(mB_,5)/(48*pow(PI,3)) * dGamma_dw_unnormed(w);
+  return GF*GF*Vcb*Vcb*pow(mB_,5)/(48*pow(PI,3)) * dGamma_dw_aux(w);
 }
 
 #endif
