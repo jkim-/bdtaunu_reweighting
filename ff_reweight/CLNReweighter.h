@@ -13,6 +13,12 @@ class CLNReweighter {
 
     double compute_bdlnu_cln_weights(const BToDlnuMode&) const;
     double compute_bdslnu_cln_weights(const BToDslnuMode&) const;
+
+  private:
+    double ReweightBDlnu(
+        const BToDlnuMode&, std::string, std::string) const; 
+    double ReweightBDslnu(
+        const BToDslnuMode&, bool, bool, std::string, std::string) const; 
 };
 
 #endif

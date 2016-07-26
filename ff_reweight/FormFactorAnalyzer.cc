@@ -12,6 +12,7 @@ FormFactorAnalyzer::FormFactorAnalyzer()
 FormFactorAnalyzer::FormFactorAnalyzer(bool ignore_fsr) : 
   bsl_dict_(), 
   cln_reweighter_(), 
+  linearq2_reweighter_(), 
   llsw_reweighter_(), 
   ignore_fsr_(ignore_fsr), 
   bdlnu_(), bdslnu_(), bdsslnu_() {
@@ -25,6 +26,7 @@ void FormFactorAnalyzer::clear_cache() {
   bdslnu_.clear();
   bdsslnu_.clear();
   cln_ = 1.0;
+  linearq2_ = 1.0;
   llswb1_ = 1.0;
   llswb2_ = 1.0;
 }
@@ -183,15 +185,18 @@ void FormFactorAnalyzer::collect_decay_modes(
 void FormFactorAnalyzer::compute_ff_weights() {
 
   cln_ = 1.0;
+  linearq2_ = 1.0;
   llswb1_ = 1.0;
   llswb2_ = 1.0;
 
   for (const auto &m : bdlnu_) {
     cln_ *= cln_reweighter_.compute_bdlnu_cln_weights(m);
+    linearq2_ *= linearq2_reweighter_.compute_bdlnu_linearq2_weights(m);
   }
 
   for (const auto &m : bdslnu_) {
     cln_ *= cln_reweighter_.compute_bdslnu_cln_weights(m);
+    linearq2_ *= linearq2_reweighter_.compute_bdslnu_linearq2_weights(m);
   }
 
   for (const auto &m : bdsslnu_) {

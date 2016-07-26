@@ -1,13 +1,13 @@
 # directory configuration
 # -----------------------
 
-BINARIES = gather_Dss_mass gather_spectra trace_ff_models ff_reweight
+BINARIES = ff_reweight gather_Dss_mass gather_spectra trace_ff_models 
 
 # objects to package into the shared library
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
 					BToDlnuMode.o BToDslnuMode.o BToDsslnuMode.o \
 					BSemiLepDict.o \
-					CLNReweighter.o LLSWReweighter.o \
+					CLNReweighter.o LinearQ2Reweighter.o LLSWReweighter.o \
 					FormFactorAnalyzer.o
 
 # external dependencies

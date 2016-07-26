@@ -13,6 +13,7 @@
 #include "BToDslnuMode.h"
 #include "BToDsslnuMode.h"
 #include "CLNReweighter.h"
+#include "LinearQ2Reweighter.h"
 #include "LLSWReweighter.h"
 
 class FormFactorAnalyzer {
@@ -32,6 +33,7 @@ class FormFactorAnalyzer {
     void analyze(const Graph &g, const McDecayModeSummary &summary);
 
     double cln_weight() const { return cln_; }
+    double linearq2_weight() const { return linearq2_; }
     double llswb1_weight() const { return llswb1_; }
     double llswb2_weight() const { return llswb2_; }
 
@@ -60,6 +62,7 @@ class FormFactorAnalyzer {
 
     BSemiLepDict bsl_dict_;
     CLNReweighter cln_reweighter_;
+    LinearQ2Reweighter linearq2_reweighter_;
     LLSWReweighter llsw_reweighter_;
     bool ignore_fsr_;
 
@@ -68,6 +71,7 @@ class FormFactorAnalyzer {
     std::vector<BToDsslnuMode> bdsslnu_;
 
     double cln_;
+    double linearq2_;
     double llswb1_;
     double llswb2_;
 

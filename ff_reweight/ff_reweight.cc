@@ -135,7 +135,7 @@ void ff_reweight(const po::variables_map &vm) {
   std::string output_fname = vm["output_fname"].as<std::string>();
   CsvWriter csv;
   csv.open(output_fname, {
-      "eid", "cln_weight", "llswb1_weight", "llswb2_weight"
+      "eid", "cln_weight", "linearq2_weight", "llswb1_weight", "llswb2_weight"
   });
 
   // initialize worker classes
@@ -176,6 +176,7 @@ void ff_reweight(const po::variables_map &vm) {
     analyzer.analyze(g, summary);
 
     double cln_weight = analyzer.cln_weight();
+    double linearq2_weight = analyzer.linearq2_weight();
     double llswb1_weight = analyzer.llswb1_weight();
     double llswb2_weight = analyzer.llswb2_weight();
 
@@ -183,11 +184,13 @@ void ff_reweight(const po::variables_map &vm) {
     // need to look into why this edge case occurs. appears 
     // to be a problem inherent in the input data
     if (std::isnan(cln_weight)) { cln_weight = 1.0; }
+    if (std::isnan(linearq2_weight)) { linearq2_weight = 1.0; }
     if (std::isnan(llswb1_weight)) { llswb1_weight = 1.0; }
     if (std::isnan(llswb2_weight)) { llswb2_weight = 1.0; }
 
     csv.set("eid", pu::type2string(eid));
     csv.set("cln_weight", pu::type2string(cln_weight));
+    csv.set("linearq2_weight", pu::type2string(linearq2_weight));
     csv.set("llswb1_weight", pu::type2string(llswb1_weight));
     csv.set("llswb2_weight", pu::type2string(llswb2_weight));
     csv.commit();
