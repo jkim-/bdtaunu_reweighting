@@ -23,6 +23,16 @@ double ReweightBDsslnu(const BToDsslnuMode &mode,
   double q2 = mode.q2();
   BDsslnuDecayRate from(mB, mD, mLep, from_model);
   BDsslnuDecayRate to(mB, mD, mLep, to_model);
+
+  // cludge for now; i suspect this happens for poorly reconstructed candidates.
+  // in any case, this is very infrequent (~ 1 in 10000 records). would have 
+  // been better to mark these for removal, but that's more bookkepping
+  // for what the timeline will allow me to do. 
+  if (q2 < from.q2min() || q2 > from.q2max() ||
+      q2 < to.q2min() || q2 > to.q2max()) { 
+    return 1.0;
+  }
+
   return to.dGamma_dq2_density(q2) / from.dGamma_dq2_density(q2);
 }
 
