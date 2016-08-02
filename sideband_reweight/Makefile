@@ -1,4 +1,4 @@
-BINARIES = test1
+BINARIES = sideband_reweight
 
 OBJECTS = 
 
@@ -55,8 +55,8 @@ all : $(BINARIES) $(SYMLINKS)
 grid_search :
 	ln -s $(BBRCITKDE_ROOT)/grid_search/grid_search grid_search
 
-#continuum_reweight : $(addprefix $(BUILDDIR)/, continuum_reweight.o $(OBJECTS))
-#	$(CXX) $^ $(LDFLAGS) -o $@
+sideband_reweight : $(addprefix $(BUILDDIR)/, sideband_reweight.o $(OBJECTS))
+	$(CXX) $^ $(LDFLAGS) -o $@
 
 test% : $(addprefix $(BUILDDIR)/, test%.o $(OBJECTS))
 	$(CXX) $^ $(LDFLAGS) -o $@

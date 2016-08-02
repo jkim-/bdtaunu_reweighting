@@ -37,7 +37,9 @@ FROM
   candidate_optimized_events_scores_generic_t USING (eid)
 WHERE 
   logit_logre_signal_score IS NOT NULL AND
-  logit_logre_dstartau_score IS NOT NULL
+  logit_logre_dstartau_score IS NOT NULL AND
+  logit_gbdt300_signal_score IS NOT NULL AND
+  logit_gbdt300_dstartau_score IS NOT NULL
 ;
 
 \copy (SELECT * FROM sideband_sample_comb) TO '{0}' DELIMITER ' ';
