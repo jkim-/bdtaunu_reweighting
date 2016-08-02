@@ -42,13 +42,13 @@ if __name__ == '__main__':
     sql_script_template = 'sql/download_sideband_data_template.sql'
     if args.onpeak:
         mode_label = 1
-        output_fname = 'onpeak.csv'
+        output_fname = 'sideband.onpeak.csv'
         print "  sample type = onpeak"
         print
         sys.stdout.flush()
     else:
         mode_label = 0
-        output_fname = 'offpeak.csv'
+        output_fname = 'sideband.offpeak.csv'
         print "  sample type = offpeak"
         print
         sys.stdout.flush()

@@ -1,0 +1,3 @@
+python download_sideband_data.py --onpeak
+python download_sideband_data.py --offpeak
+python download_sideband_mc.py --comb

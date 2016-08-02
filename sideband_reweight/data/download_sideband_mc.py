@@ -39,7 +39,7 @@ if __name__ == '__main__':
     output_fname, sql_script_template = None, None
     if args.comb:
         sql_script_template = 'sql/download_sideband_comb.sql'
-        output_fname = 'comb.csv'
+        output_fname = 'sideband.comb.csv'
         print "  sample type = comb"
         print
         sys.stdout.flush()
