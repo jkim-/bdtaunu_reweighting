@@ -445,7 +445,6 @@ void evaluate(const po::variables_map &vm) {
         csv.commit();
       }
     }
-    --i;
   }
   
   end = std::chrono::high_resolution_clock::now();
