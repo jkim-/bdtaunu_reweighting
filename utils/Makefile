@@ -1,5 +1,6 @@
 BINARIES = 
-OBJECTS = PsqlReader.o CsvWriter.o gauss_legendre.o ff_reweight_utils.o custom_program_option_utils.o
+OBJECTS = PsqlReader.o CsvWriter.o gauss_legendre.o ff_reweight_utils.o \
+					custom_program_option_utils.o visualization_utils.o
 
 LIBNAME = libreweight_utils.so
 

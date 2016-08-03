@@ -428,16 +428,26 @@ void evaluate(const po::variables_map &vm) {
         double control_value = control_queries[j].attributes().value();
         double target_value = target_queries[j].attributes().value();
 
-        // note: reweight only when adjusted control density is positive
-        // any better ideas? 
+        // cludge 1: only reweight densities when the value is larger than 
+        // some fixed epsilon. 0.01 for now. 
+        bool skip = false;
+        if (control_value < 0.01 || target_value < 0.01) { skip = true; }
+        for (size_t c = 0; c < n_nested_components; ++c) {
+          if (nested_queries[c][j].attributes().value() < 0.01) { skip = true; }
+        }
+
         double adjusted_control_value = control_value;
         for (size_t c = 0; c < n_nested_components; ++c) {
           adjusted_control_value -= nested_proportions[c] * nested_queries[c][j].attributes().value();
         }
         adjusted_control_value /= (1 - proportion_sum);
-        if (adjusted_control_value > 0 && target_value > 0) { 
-          sideband_weight = adjusted_control_value / target_value; 
-        }
+        sideband_weight = adjusted_control_value / target_value; 
+
+        // cludge 2: reweight densities when the adjustd control density is 
+        // positive. any better ideas?
+        if (adjusted_control_value <= 0 && target_value <= 0) { skip = true; }
+
+        if (skip) { sideband_weight = 1.0; }
 
         // write line
         csv.set("eid", pu::type2string(query_eid[j]));
