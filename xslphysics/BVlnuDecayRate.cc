@@ -49,6 +49,15 @@ BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml,
   norm_ = gauss_legendre(256, dGamma_dq2_adapter<BVlnuDecayRate>, this, q2min(), q2max());
 }
 
+BVlnuDecayRate::BVlnuDecayRate(double mB, double mDs, double ml, 
+    bool isDgamma, bool islplus, const CLNParams &params)
+  : mB_(mB), mDs_(mDs), ml_(ml), isDgamma_(isDgamma), islplus_(islplus) {
+
+  ff_ = new CLNVectorFF(mB_, mDs_, params);
+  norm_ = gauss_legendre(256, dGamma_dq2_adapter<BVlnuDecayRate>, this, q2min(), q2max());
+
+}
+
 BVlnuDecayRate::BVlnuDecayRate(const BVlnuDecayRate &rhs) {
   mB_ = rhs.mB_; 
   mDs_ = rhs.mDs_; 

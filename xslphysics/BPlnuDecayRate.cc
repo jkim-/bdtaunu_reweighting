@@ -45,6 +45,15 @@ BPlnuDecayRate::BPlnuDecayRate(double mB, double mD, double ml,
 
 }
 
+BPlnuDecayRate::BPlnuDecayRate(
+    double mB, double mD, double ml, const CLNParams &params) 
+  : mB_(mB), mD_(mD), ml_(ml) {
+
+  ff_ = new CLNPseudoscalarFF(mB_, mD_, params);
+  norm_ = gauss_legendre(256, dGamma_dq2_adapter<BPlnuDecayRate>, this, q2min(), q2max());
+
+}
+
 BPlnuDecayRate::BPlnuDecayRate(const BPlnuDecayRate &rhs) {
   mB_ = rhs.mB_; mD_ = rhs.mD_; ml_ = rhs.ml_;
   ff_ = rhs.ff_->clone();

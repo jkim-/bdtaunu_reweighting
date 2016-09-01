@@ -5,6 +5,7 @@
 
 #include "xslphysics_utils.h"
 #include "VectorFF.h"
+#include "CLNParams.h"
 
 class BVlnuDecayRate {
 
@@ -17,6 +18,9 @@ class BVlnuDecayRate {
     BVlnuDecayRate(double mB, double mDs, double ml, 
                    bool isDgamma, bool islplus,
                    const std::string &ff_model_name);
+    BVlnuDecayRate(double mB, double mDs, double ml, 
+                   bool isDgamma, bool islplus,
+                   const CLNParams &params);
     BVlnuDecayRate(const BVlnuDecayRate&);
     BVlnuDecayRate& operator=(const BVlnuDecayRate&);
     ~BVlnuDecayRate();

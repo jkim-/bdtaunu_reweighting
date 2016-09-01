@@ -2,12 +2,12 @@
 #define __CLNVECTORFF_H__
 
 #include "VectorFF.h"
+#include "CLNParams.h"
 
 class CLNVectorFF : public VectorFF {
   public: 
-    CLNVectorFF(double mB, double mDs, 
-        double F1 = 0.921, double rho2 = 1.207, 
-        double R0 = 1.14, double R1 = 1.401, double R2 = 0.854);
+    CLNVectorFF(double mB, double mDs);
+    CLNVectorFF(double mB, double mDs, const CLNParams &cln_params);
     ~CLNVectorFF();
 
     VectorFF* clone();

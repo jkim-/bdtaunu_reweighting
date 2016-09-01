@@ -4,14 +4,25 @@
 #include <ff_reweight_constants.h>
 #include "CLNPseudoscalarFF.h"
 
-CLNPseudoscalarFF::CLNPseudoscalarFF(double mB, double mD, 
-    double rho2, double V11, double Delta) 
-  : mB_(mB), mD_(mD), rho2_(rho2), V11_(V11), Delta_(Delta) {}
+CLNPseudoscalarFF::CLNPseudoscalarFF(double mB, double mD) 
+  : CLNPseudoscalarFF(mB, mD, CLNParams()) {}
+
+CLNPseudoscalarFF::CLNPseudoscalarFF(double mB, double mD, const CLNParams &params) 
+  : mB_(mB), 
+    mD_(mD), 
+    rho2_(params.get_d_rho2()), 
+    V11_(params.get_d_v11()), 
+    Delta_(params.get_d_delta()) {
+}
 
 CLNPseudoscalarFF::~CLNPseudoscalarFF() {}
 
 PseudoscalarFF* CLNPseudoscalarFF::clone() {
-  return new CLNPseudoscalarFF(mB_, mD_, rho2_, V11_, Delta_);
+  CLNParams params;
+  params.set_d_rho2(rho2_);
+  params.set_d_v11(V11_);
+  params.set_d_delta(Delta_);
+  return new CLNPseudoscalarFF(mB_, mD_, params);
 }
 
 void CLNPseudoscalarFF::compute_ff(double q2, double &fplus, double &fminus) const {

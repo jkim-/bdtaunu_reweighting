@@ -6,11 +6,13 @@
 // most of the physics formulas 
 
 #include "PseudoscalarFF.h"
+#include "CLNParams.h"
 
 class CLNPseudoscalarFF : public PseudoscalarFF {
   public: 
-    CLNPseudoscalarFF(double mB, double mD, 
-        double rho2=1.186, double V11 = 1.0816, double Delta=1.0);
+
+    CLNPseudoscalarFF(double mB, double mD);
+    CLNPseudoscalarFF(double mB, double mD, const CLNParams &cln_params);
 
     ~CLNPseudoscalarFF();
 

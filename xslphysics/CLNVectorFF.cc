@@ -4,14 +4,29 @@
 #include <ff_reweight_constants.h>
 #include "CLNVectorFF.h"
 
-CLNVectorFF::CLNVectorFF(double mB, double mDs,
-    double F1, double rho2, double R0, double R1, double R2) 
-  : mB_(mB), mDs_(mDs), F1_(F1), rho2_(rho2), R0_(R0), R1_(R1), R2_(R2) {}
+CLNVectorFF::CLNVectorFF(double mB, double mDs) 
+  : CLNVectorFF(mB, mDs, CLNParams()) {}
+
+CLNVectorFF::CLNVectorFF(double mB, double mDs, const CLNParams &params) 
+  : mB_(mB), 
+    mDs_(mDs), 
+    F1_(params.get_dstar_F1()), 
+    rho2_(params.get_dstar_rho2()),
+    R0_(params.get_dstar_R0()),
+    R1_(params.get_dstar_R1()),
+    R2_(params.get_dstar_R2()) {
+}
 
 CLNVectorFF::~CLNVectorFF() {}
 
 VectorFF* CLNVectorFF::clone() {
-  return new CLNVectorFF(mB_, mDs_, F1_, rho2_, R0_, R1_, R2_);
+  CLNParams params;
+  params.set_dstar_F1(F1_);
+  params.set_dstar_rho2(rho2_);
+  params.set_dstar_R0(R0_);
+  params.set_dstar_R1(R1_);
+  params.set_dstar_R2(R2_);
+  return new CLNVectorFF(mB_, mDs_, params);
 }
 
 void CLNVectorFF::compute_ff(double q2, 

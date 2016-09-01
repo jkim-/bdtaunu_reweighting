@@ -5,6 +5,7 @@
 
 #include "xslphysics_utils.h"
 #include "PseudoscalarFF.h"
+#include "CLNParams.h"
 
 class BPlnuDecayRate {
 
@@ -17,6 +18,8 @@ class BPlnuDecayRate {
     BPlnuDecayRate();
     BPlnuDecayRate(double mB, double mD, double ml, 
                    const std::string &ff_model_name);
+    BPlnuDecayRate(double mB, double mD, double ml, 
+                   const CLNParams &params);
     BPlnuDecayRate(const BPlnuDecayRate&);
     BPlnuDecayRate& operator=(const BPlnuDecayRate&);
     ~BPlnuDecayRate();
