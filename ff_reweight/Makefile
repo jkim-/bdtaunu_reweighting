@@ -1,7 +1,7 @@
 # directory configuration
 # -----------------------
 
-BINARIES = ff_reweight gather_Dss_mass gather_spectra trace_ff_models 
+BINARIES = compute_cln_variations ff_reweight gather_Dss_mass gather_spectra trace_ff_models 
 
 # objects to package into the shared library
 OBJECTS = McDecayGraph.o McDecayModeCurator.o \
@@ -57,6 +57,9 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
 all : $(BINARIES)
+
+compute_cln_variations : $(addprefix $(BUILDDIR)/, compute_cln_variations.o $(OBJECTS))
+	$(CXX) $(LDFLAGS) $^ -o $@
 
 ff_reweight : $(addprefix $(BUILDDIR)/, ff_reweight.o $(OBJECTS))
 	$(CXX) $(LDFLAGS) $^ -o $@

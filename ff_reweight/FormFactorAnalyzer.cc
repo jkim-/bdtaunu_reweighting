@@ -222,3 +222,39 @@ void FormFactorAnalyzer::analyze(
 
   return; 
 }
+
+
+std::vector<double> FormFactorAnalyzer::analyze_cln(
+    const Graph &g, const McDecayModeSummary &summary, 
+    const std::vector<CLNParams> &params) {
+
+  // initialize cache
+  clear_cache();
+  lund_pm_ = get_lund_pm(g);
+  lorentz_pm_ = get_lorentz_pm(g);
+
+  // populate semileptonic decay mode objects
+  collect_decay_modes(g, summary);
+
+  // compute form factor weights
+  std::vector<double> results;
+
+  for (const auto &p : params) {
+    double weight = 1.0;
+
+    for (const auto &m : bdlnu_) {
+      weight *= cln_reweighter_.compute_bdlnu_cln_weights(m, p);
+    }
+
+    for (const auto &m : bdslnu_) {
+      weight *= cln_reweighter_.compute_bdslnu_cln_weights(m, p);
+    }
+
+    results.push_back(weight);
+  }
+
+  return results;
+
+}
+
+

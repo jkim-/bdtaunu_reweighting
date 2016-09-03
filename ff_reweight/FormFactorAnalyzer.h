@@ -5,6 +5,7 @@
 
 #include <BPlnuDecayRate.h>
 #include <BVlnuDecayRate.h>
+#include <CLNParams.h>
 
 #include "McDecayGraph.h"
 #include "McDecayModeCurator.h"
@@ -30,13 +31,23 @@ class FormFactorAnalyzer {
     FormFactorAnalyzer(bool ignore_fsr);
     ~FormFactorAnalyzer();
 
+    // evaluate the form factor weights used for the central value. 
+    // use accesors to get the result from running analyze.
+    //
+    // Not a good design, but done to meet deadline
     void analyze(const Graph &g, const McDecayModeSummary &summary);
-
     double cln_weight() const { return cln_; }
     double linearq2_weight() const { return linearq2_; }
     double llswb1_weight() const { return llswb1_; }
     double llswb2_weight() const { return llswb2_; }
 
+    // evaluate cln weights for many cln parameter settings
+    std::vector<double> analyze_cln(
+        const Graph &g, 
+        const McDecayModeSummary &summary,
+        const std::vector<CLNParams> &params);
+
+    // accessors for decay modes
     const std::vector<BToDlnuMode>& bdlnu() const { return bdlnu_; }
     const std::vector<BToDslnuMode>& bdslnu() const { return bdslnu_; }
     const std::vector<BToDsslnuMode>& bdsslnu() const { return bdsslnu_; }
