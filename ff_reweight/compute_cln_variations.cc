@@ -148,29 +148,29 @@ void compute_cln_variations(const po::variables_map &vm) {
   cln_params[0].set_d_rho2(1.239);
   cln_params[1].set_d_rho2(1.131);
 
-  cln_params[2].set_dstar_rho2(1.2061);
-  cln_params[2].set_dstar_R1(1.4047);
-  cln_params[2].set_dstar_R2(0.8537);
+  cln_params[2].set_dstar_rho2(1.1856);
+  cln_params[2].set_dstar_R1(1.3754);
+  cln_params[2].set_dstar_R2(0.8713);
 
-  cln_params[3].set_dstar_rho2(1.2079);
-  cln_params[3].set_dstar_R1(1.4073);
-  cln_params[3].set_dstar_R2(0.8522);
+  cln_params[3].set_dstar_rho2(1.2284);
+  cln_params[3].set_dstar_R1(1.1436);
+  cln_params[3].set_dstar_R2(0.8347);
 
-  cln_params[4].set_dstar_rho2(1.2067);
-  cln_params[4].set_dstar_R1(1.4062);
-  cln_params[4].set_dstar_R2(0.8538);
+  cln_params[4].set_dstar_rho2(1.1927);
+  cln_params[4].set_dstar_R1(1.4183);
+  cln_params[4].set_dstar_R2(0.8567);
 
-  cln_params[5].set_dstar_rho2(1.2073);
-  cln_params[5].set_dstar_R1(1.4058);
-  cln_params[5].set_dstar_R2(0.8522);
+  cln_params[5].set_dstar_rho2(1.2213);
+  cln_params[5].set_dstar_R1(1.3937);
+  cln_params[5].set_dstar_R2(0.8493);
 
-  cln_params[6].set_dstar_rho2(1.2070);
-  cln_params[6].set_dstar_R1(1.4060);
-  cln_params[6].set_dstar_R2(0.8530);
+  cln_params[6].set_dstar_rho2(1.2105);
+  cln_params[6].set_dstar_R1(1.4079);
+  cln_params[6].set_dstar_R2(0.8602);
 
-  cln_params[7].set_dstar_rho2(1.20697);
-  cln_params[7].set_dstar_R1(1.40598);
-  cln_params[7].set_dstar_R2(0.85294);
+  cln_params[7].set_dstar_rho2(1.2035);
+  cln_params[7].set_dstar_R1(1.4041);
+  cln_params[7].set_dstar_R2(0.8458);
 
   // initialize worker classes
   McDecayGraphFactory graph_factory;

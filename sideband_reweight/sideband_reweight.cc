@@ -445,7 +445,8 @@ void evaluate(const po::variables_map &vm) {
 
         // cludge 2: reweight densities when the adjustd control density is 
         // positive. any better ideas?
-        if (adjusted_control_value <= 0 && target_value <= 0) { skip = true; }
+        //if (adjusted_control_value <= 0 && target_value <= 0) { skip = true; }
+        if (sideband_weight < 0) { skip = true;}
 
         if (skip) { sideband_weight = 1.0; }
 

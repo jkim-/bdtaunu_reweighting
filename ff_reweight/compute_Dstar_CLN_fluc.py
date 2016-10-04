@@ -55,16 +55,16 @@ print evec2
 print 
 
 print '+ p0 up/down (rho2, R1, R2)'
-print central + eval0*evec0
-print central - eval0*evec0
+print central + np.sqrt(eval0)*evec0
+print central - np.sqrt(eval0)*evec0
 print
 
 print '+ p1 up/down (rho2, R1, R2)'
-print central + eval1*evec1
-print central - eval1*evec1
+print central + np.sqrt(eval1)*evec1
+print central - np.sqrt(eval1)*evec1
 print
 
 print '+ p2 up/down (rho2, R1, R2)'
-print central + eval2*evec2
-print central - eval2*evec2
+print central + np.sqrt(eval2)*evec2
+print central - np.sqrt(eval2)*evec2
 print
